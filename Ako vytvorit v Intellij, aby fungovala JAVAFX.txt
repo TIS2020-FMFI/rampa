@@ -1,0 +1,8 @@
+- chod do File>Project Structure> Libraries.
+- stlac plusko, Java, a chod do priecinku javafx sdk a vyber priecinok 'lib' a ten pridaj.
+
+Potom stlac v pravo hore, ako je napisane, Main sa spusta, klikni na taku sipocku smerom dole,
+tam vyber Edit Configurations a tam do VM options prekopiruj:
+
+--module-path "C:\Users\ferok\IdeaProjects\Java\javafx-sdk-11.0.2\lib" --add-modules=javafx.controls,javafx.fxml
+
