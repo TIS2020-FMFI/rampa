@@ -2,8 +2,6 @@ package data;
 
 import javafx.scene.control.CheckBox;
 
-import java.time.LocalTime;
-
 public class ZastavkaRow {
     private String cofor;
     private String meno;

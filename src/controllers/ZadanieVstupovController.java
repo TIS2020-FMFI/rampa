@@ -16,12 +16,12 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import main.Main;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 
@@ -36,42 +36,32 @@ public class ZadanieVstupovController implements Initializable {
     private ScrollPane scrollPane;
     @FXML
     private Label uvodnyLabel;
-
     @FXML
     private TableView<ZastavkaRow> tableView;
-
     @FXML
     private TableColumn<ZastavkaRow, String> cofor;
-
     @FXML
     private TableColumn<ZastavkaRow, String> meno;
-
     @FXML
     private TableColumn<ZastavkaRow, Integer> vzdialenost;
-
     @FXML
     private TableColumn<ZastavkaRow, Integer> rychlost;
-
     @FXML
     private TableColumn<ZastavkaRow, Integer> dlzkaNakladky;
-
     @FXML
     private TableColumn<ZastavkaRow, String> typZastavky;
-
     @FXML
     private TableColumn<ZastavkaRow, String> loading;
-
     @FXML
     private TableColumn<ZastavkaRow, String> rampa;
-
     @FXML
     private TableColumn<ZastavkaRow, CheckBox> zaciatokST;
-
     @FXML
     private TableColumn<ZastavkaRow, String> cas;
-
     @FXML
     private TableColumn<ZastavkaRow, Integer> freqCofor;
+    @FXML
+    private VBox tableVbox; // box v ktorom je tabulka a buttony pod nou
 
     public ZadanieVstupovController(final String grafikonName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/zadanieVstupov.fxml"));
@@ -82,8 +72,9 @@ public class ZadanieVstupovController implements Initializable {
 
         setUvodnyLabelText(grafikonName);
 
+        Main.zadanieVstupovStage.widthProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefWidth((Double) newVal - 30));
 
-
+        Main.zadanieVstupovStage.heightProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefHeight((Double) newVal));
         // tableView.getItems().add("Ferko");
     }
 
@@ -98,14 +89,11 @@ public class ZadanieVstupovController implements Initializable {
 
         // aby sa rychlejsie scrollovalo kedze defaultne sa scrolluje dost pomaly
         scrollPane.setContent(anchorPane);
-        anchorPane.setOnScroll(new EventHandler<ScrollEvent>() {
-            @Override
-            public void handle(ScrollEvent event) {
-                double deltaY = event.getDeltaY()*SCROLL_SPEED;
-                double width = scrollPane.getContent().getBoundsInLocal().getWidth();
-                double vvalue = scrollPane.getVvalue();
-                scrollPane.setVvalue(vvalue + -deltaY/width); // deltaY/width to make the scrolling equally fast regardless of the actual width of the component
-            }
+        anchorPane.setOnScroll(event -> {
+            double deltaY = event.getDeltaY() * SCROLL_SPEED;
+            double width = scrollPane.getContent().getBoundsInLocal().getWidth();
+            double vvalue = scrollPane.getVvalue();
+            scrollPane.setVvalue(vvalue + -deltaY / width); // deltaY/width to make the scrolling equally fast regardless of the actual width of the component
         });
     }
 
@@ -166,24 +154,33 @@ public class ZadanieVstupovController implements Initializable {
 
     public void loadData() {
         tableView.setFixedCellSize(30.0);
-        data.add(new ZastavkaRow("daco", "daco",10,11, 30,
-                "daco","daco","daco",new CheckBox(),"daco",500));
+        data.add(new ZastavkaRow("", "",0,0, 0,
+                "","","", new CheckBox(),"",0));
         tableView.setItems(data);
     }
 
     public void addRowInTable(MouseEvent mouseEvent) {
         tableView.setPrefHeight(tableView.getPrefHeight() + CELL_HEIGHT);
-        data.add(new ZastavkaRow("daco", "daco",10,11, 30,
-                "daco","daco","daco",new CheckBox(),"daco",500));
+        tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
+        data.add(new ZastavkaRow("", "",0,0, 0,
+                "","","", new CheckBox(),"",0));
+        System.out.println("stage width = " + Main.zadanieVstupovStage.getWidth());
+        System.out.println("anchorPane width = " + anchorPane.getWidth() + " and his prefWidth = " + anchorPane.getPrefWidth());
+
     }
 
     public void deleteRowInTable(MouseEvent mouseEvent) {
         if (tableView.getPrefHeight() > CELL_HEIGHT*3 + 6) {
             tableView.setPrefHeight(tableView.getPrefHeight() - CELL_HEIGHT);
+            tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
             data.remove(data.size() - 1);
         }
     }
 
+    public void goBackToIntroBtnClick(MouseEvent mouseEvent) {
+        Main.uvodnyStage.show();
+        Main.zadanieVstupovStage.close();
+    }
 }
 
 class MyStringConverter extends StringConverter<Integer> {
