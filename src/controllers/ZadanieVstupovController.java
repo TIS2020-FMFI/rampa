@@ -3,18 +3,14 @@ package controllers;
 import data.ZastavkaRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
@@ -28,6 +24,7 @@ import java.util.ResourceBundle;
 public class ZadanieVstupovController implements Initializable {
     final Integer CELL_HEIGHT = 30;
     final int SCROLL_SPEED = 6;
+    StatVzdialenostController statVzdialenostController = null;
     ObservableList<ZastavkaRow> data = FXCollections.observableArrayList();
 
     @FXML
@@ -73,7 +70,6 @@ public class ZadanieVstupovController implements Initializable {
         setUvodnyLabelText(grafikonName);
 
         Main.zadanieVstupovStage.widthProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefWidth((Double) newVal - 30));
-
         Main.zadanieVstupovStage.heightProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefHeight((Double) newVal));
         // tableView.getItems().add("Ferko");
     }
@@ -87,14 +83,7 @@ public class ZadanieVstupovController implements Initializable {
         initTable();
         loadData();
 
-        // aby sa rychlejsie scrollovalo kedze defaultne sa scrolluje dost pomaly
-        scrollPane.setContent(anchorPane);
-        anchorPane.setOnScroll(event -> {
-            double deltaY = event.getDeltaY() * SCROLL_SPEED;
-            double width = scrollPane.getContent().getBoundsInLocal().getWidth();
-            double vvalue = scrollPane.getVvalue();
-            scrollPane.setVvalue(vvalue + -deltaY / width); // deltaY/width to make the scrolling equally fast regardless of the actual width of the component
-        });
+        Main.makeFasterScroll(scrollPane, anchorPane, SCROLL_SPEED);
     }
 
     private void initTable() {
@@ -164,9 +153,6 @@ public class ZadanieVstupovController implements Initializable {
         tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
         data.add(new ZastavkaRow("", "",0,0, 0,
                 "","","", new CheckBox(),"",0));
-        System.out.println("stage width = " + Main.zadanieVstupovStage.getWidth());
-        System.out.println("anchorPane width = " + anchorPane.getWidth() + " and his prefWidth = " + anchorPane.getPrefWidth());
-
     }
 
     public void deleteRowInTable(MouseEvent mouseEvent) {
@@ -175,6 +161,14 @@ public class ZadanieVstupovController implements Initializable {
             tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
             data.remove(data.size() - 1);
         }
+    }
+
+    public void pridatDlzkuTrasyBtnClick(MouseEvent event) throws IOException {
+        if (statVzdialenostController == null) {
+            statVzdialenostController = new StatVzdialenostController();
+        }
+        Main.statVzdialenostStage.show();
+        Main.zadanieVstupovStage.hide();
     }
 
     public void goBackToIntroBtnClick(MouseEvent mouseEvent) {
