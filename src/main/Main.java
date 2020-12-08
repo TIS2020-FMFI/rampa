@@ -16,6 +16,9 @@ public class Main extends Application {
     public static Stage uvodnyStage = null;
     public static Stage zadanieVstupovStage = null;
     public static Stage statVzdialenostStage = null;
+    public static Stage technickeUdajeStage = null;
+    public static Stage udajeDodavatelaStage = null;
+    public static Stage ukazkaStage = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -47,6 +50,15 @@ public class Main extends Application {
 
         statVzdialenostStage = new Stage();
         statVzdialenostStage.setTitle("Určenie prejdenej vzdialenosti pre daný štát");
+
+        technickeUdajeStage = new Stage();
+        technickeUdajeStage.setTitle("Určenie technických údajov");
+
+        udajeDodavatelaStage = new Stage();
+        udajeDodavatelaStage.setTitle("Pridanie dodávateľa");
+
+        ukazkaStage = new Stage();
+        ukazkaStage.setTitle("Ukážka");
     }
 
 

@@ -44,9 +44,15 @@ public class StatVzdialenostController implements Initializable {
         loader.setController(this);
 
         Main.statVzdialenostStage.setScene(new Scene(loader.load()));
+        Main.statVzdialenostStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            anchorPane.setPrefWidth((Double) newVal - 30);
+            scrollPane.setPrefWidth((Double) newVal);
+        });
 
-        Main.statVzdialenostStage.widthProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefWidth((Double) newVal - 30));
-        Main.statVzdialenostStage.heightProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefHeight((Double) newVal));
+        Main.statVzdialenostStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+            anchorPane.setPrefHeight((Double) newVal - 50);
+            scrollPane.setPrefWidth((Double) newVal);
+        });
     }
 
     @Override
@@ -54,7 +60,7 @@ public class StatVzdialenostController implements Initializable {
         initTable();
         loadData();
 
-        //Main.makeFasterScroll(scrollPane, anchorPane, SCROLL_SPEED);
+        Main.makeFasterScroll(scrollPane, anchorPane, SCROLL_SPEED);
     }
 
     private void initTable() {
@@ -79,7 +85,7 @@ public class StatVzdialenostController implements Initializable {
 
     public void loadData() {
         tableView.setFixedCellSize(30.0);
-        data.add(new StatVzdialenostRow("ah", ""));
+        data.add(new StatVzdialenostRow("", ""));
         tableView.setItems(data);
     }
 
@@ -90,7 +96,7 @@ public class StatVzdialenostController implements Initializable {
     }
 
     public void odobratStatBtnClick(MouseEvent mouseEvent) {
-        if (tableView.getPrefHeight() > CELL_HEIGHT*3 + 6) {
+        if (tableView.getPrefHeight() > CELL_HEIGHT*2 + 6) {
             tableView.setPrefHeight(tableView.getPrefHeight() - CELL_HEIGHT);
             tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
             data.remove(data.size() - 1);

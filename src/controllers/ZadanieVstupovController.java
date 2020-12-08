@@ -25,6 +25,9 @@ public class ZadanieVstupovController implements Initializable {
     final Integer CELL_HEIGHT = 30;
     final int SCROLL_SPEED = 6;
     StatVzdialenostController statVzdialenostController = null;
+    TechnickeUdajeController technickeUdajeController = null;
+    UdajeDodavatelaController udajeDodavatelaController = null;
+    UkazkaController ukazkaController = null;
     ObservableList<ZastavkaRow> data = FXCollections.observableArrayList();
 
     @FXML
@@ -71,7 +74,6 @@ public class ZadanieVstupovController implements Initializable {
 
         Main.zadanieVstupovStage.widthProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefWidth((Double) newVal - 30));
         Main.zadanieVstupovStage.heightProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefHeight((Double) newVal));
-        // tableView.getItems().add("Ferko");
     }
 
     public void setUvodnyLabelText(String uvodnyLabel) {
@@ -171,20 +173,45 @@ public class ZadanieVstupovController implements Initializable {
         Main.zadanieVstupovStage.hide();
     }
 
+    public void pridatTechnickeUdajeBtnClick(MouseEvent event) throws IOException {
+        if (technickeUdajeController == null) {
+            technickeUdajeController = new TechnickeUdajeController();
+        }
+        Main.technickeUdajeStage.show();
+        Main.zadanieVstupovStage.hide();
+    }
+
     public void goBackToIntroBtnClick(MouseEvent mouseEvent) {
         Main.uvodnyStage.show();
         Main.zadanieVstupovStage.close();
     }
-}
 
-class MyStringConverter extends StringConverter<Integer> {
-    @Override
-    public String toString(Integer integer) {
-        return "" + integer;
+    public void pridatUdajeDodavatelaBtnClick(MouseEvent mouseEvent) throws IOException {
+        if (udajeDodavatelaController == null) {
+            udajeDodavatelaController = new UdajeDodavatelaController();
+        }
+        Main.udajeDodavatelaStage.show();
+        Main.zadanieVstupovStage.hide();
     }
 
-    @Override
-    public Integer fromString(String s) {
-        return Integer.parseInt(s);
+    public void vygenerovatUkazkuBtnClick(MouseEvent mouseEvent) throws IOException {
+        if (ukazkaController == null) {
+            ukazkaController = new UkazkaController();
+        }
+        Main.ukazkaStage.show();
+    }
+
+    static class MyStringConverter extends StringConverter<Integer> {
+        @Override
+        public String toString(Integer integer) {
+            return "" + integer;
+        }
+
+        @Override
+        public Integer fromString(String s) {
+            return Integer.parseInt(s);
+        }
     }
 }
+
+

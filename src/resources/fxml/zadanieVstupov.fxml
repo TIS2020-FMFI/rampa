@@ -45,7 +45,7 @@
          <RadioButton mnemonicParsing="false" text="Stop" toggleGroup="$group1" />
       </VBox>
       <ChoiceBox layoutX="670.0" layoutY="172.0" prefHeight="25.0" prefWidth="99.0" />
-      <Button layoutX="883.0" layoutY="19.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="97.0" text="Pridať/Upraviť dodávateľa" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="11.0" />
+      <Button layoutX="883.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#pridatUdajeDodavatelaBtnClick" prefHeight="52.0" prefWidth="97.0" text="Pridať/Upraviť dodávateľa" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="11.0" />
       <VBox fx:id="tableVbox" layoutX="11.0" layoutY="244.0" prefHeight="303.0" prefWidth="998.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="244.0">
          <TableView id="my-table" fx:id="tableView" editable="true" prefHeight="67.0">
             <columns>
@@ -89,7 +89,7 @@
             </VBox>
          </HBox>
          <HBox alignment="CENTER" prefHeight="41.0" prefWidth="291.0">
-            <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="182.0" styleClass="lion" stylesheets="@../../css/style.css" text="Vygenerovať ukážku">
+            <Button mnemonicParsing="false" onMouseClicked="#vygenerovatUkazkuBtnClick" prefHeight="16.0" prefWidth="182.0" styleClass="lion" stylesheets="@../../css/style.css" text="Vygenerovať ukážku">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -109,7 +109,7 @@
             </Button>
          </HBox>
          <Button mnemonicParsing="false" onMouseClicked="#pridatDlzkuTrasyBtnClick" stylesheets="@../../css/style.css" text="Pridať dĺžku trasy v štátoch" />
-         <Button mnemonicParsing="false" text="Pridať technické údaje" />
+         <Button mnemonicParsing="false" onMouseClicked="#pridatTechnickeUdajeBtnClick" text="Pridať technické údaje" />
          <HBox alignment="BOTTOM_RIGHT" prefHeight="42.0" prefWidth="998.0">
             <Button mnemonicParsing="false" onMouseClicked="#goBackToIntroBtnClick" text="Späť do menu">
                <HBox.margin>
