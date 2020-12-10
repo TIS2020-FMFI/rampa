@@ -102,7 +102,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="82.0" styleClass="green" stylesheets="@../../css/style.css" text="Exportovať">
+            <Button mnemonicParsing="false" onMouseClicked="#exportExcelBtnClick" prefHeight="28.0" prefWidth="82.0" styleClass="green" stylesheets="@../../css/style.css" text="Exportovať">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
