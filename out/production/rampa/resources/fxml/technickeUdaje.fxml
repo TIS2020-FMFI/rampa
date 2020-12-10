@@ -19,12 +19,12 @@
                <children>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="Application date">
+                        <Label fx:id="appDateLb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="Application date">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="appDateInput" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -33,12 +33,12 @@
                   </HBox>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="THIS FLOW WILL START BY A">
+                        <Label fx:id="flowLb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="THIS FLOW WILL START BY A">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="flowInput" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -47,12 +47,12 @@
                   </HBox>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="HEIGHT OF THE GOODS">
+                        <Label fx:id="heightGoodsLb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="HEIGHT OF THE GOODS">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="heightGoodsInput" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -61,12 +61,12 @@
                   </HBox>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="REQUESTED HEIGHT OF THE TRUCK">
+                        <Label fx:id="heightTruckLb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="REQUESTED HEIGHT OF THE TRUCK">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="heightTruckInput" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -75,12 +75,12 @@
                   </HBox>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="REQUESTED LENGTH OF THE TRUCK FIELD 1">
+                        <Label fx:id="length1Lb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="REQUESTED LENGTH OF THE TRUCK FIELD 1">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="length1Input" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -89,12 +89,12 @@
                   </HBox>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="REQUESTED LENGTH OF THE TRUCK FIELD 2">
+                        <Label fx:id="length2Lb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="REQUESTED LENGTH OF THE TRUCK FIELD 2">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="length2Input" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -103,12 +103,12 @@
                   </HBox>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="Km EXPORT">
+                        <Label fx:id="exportLb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="Km EXPORT">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="exportInput" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -117,12 +117,12 @@
                   </HBox>
                   <HBox prefHeight="18.0" prefWidth="532.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="Km IMPORT">
+                        <Label fx:id="importLb" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-color: gray; -fx-background-color: lightgray;" text="Km IMPORT">
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
+                        <TextField fx:id="importInput" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" style="-fx-border-color: gray;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

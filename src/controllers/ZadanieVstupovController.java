@@ -1,6 +1,7 @@
 package controllers;
 
 import data.ZastavkaRow;
+import excel.ExcelUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,14 @@ import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import main.Main;
 
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.CellUtil;
+import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -199,6 +208,12 @@ public class ZadanieVstupovController implements Initializable {
             ukazkaController = new UkazkaController();
         }
         Main.ukazkaStage.show();
+    }
+
+    public void exportExcelBtnClick(MouseEvent mouseEvent) throws IOException {
+        Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+        Sheet sheet = workbook.createSheet("Meno Harku");
+        technickeUdajeController.writeTechnickeUdaje(workbook, sheet,1, 1);
     }
 
     static class MyStringConverter extends StringConverter<Integer> {
