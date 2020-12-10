@@ -28,7 +28,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#vytvoritGrafikonBtnClick" text="Vytvoriť nový grafikon">
+                  <Button fx:id="vytvorGrafikonBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#vytvoritGrafikonBtnClick" text="Vytvoriť nový grafikon">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>

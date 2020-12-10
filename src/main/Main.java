@@ -4,15 +4,21 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 
 public class Main extends Application {
 
-    public static Stage zadanieVstupovStage = null;
     public static Stage uvodnyStage = null;
+    public static Stage zadanieVstupovStage = null;
+    public static Stage statVzdialenostStage = null;
+    public static Stage technickeUdajeStage = null;
+    public static Stage udajeDodavatelaStage = null;
+    public static Stage ukazkaStage = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -23,13 +29,36 @@ public class Main extends Application {
         uvodnyStage.setScene(new Scene(root));
         uvodnyStage.show();
 
-        vytvorZadanieVstupovStage();
+        createStages();
     }
 
-    public static void vytvorZadanieVstupovStage() {
+    // aby sa rychlejsie scrollovalo kedze defaultne sa scrolluje dost pomaly v scroll pane
+    public static void makeFasterScroll(ScrollPane scrollPane, AnchorPane anchorPane, Integer SCROLL_SPEED) {
+        // aby sa rychlejsie scrollovalo kedze defaultne sa scrolluje dost pomaly
+        scrollPane.setContent(anchorPane);
+        anchorPane.setOnScroll(event -> {
+            double deltaY = event.getDeltaY() * SCROLL_SPEED;
+            double width = scrollPane.getContent().getBoundsInLocal().getWidth();
+            double vvalue = scrollPane.getVvalue();
+            scrollPane.setVvalue(vvalue + -deltaY / width); // deltaY/width to make the scrolling equally fast regardless of the actual width of the component
+        });
+    }
+
+    public static void createStages() {
         zadanieVstupovStage = new Stage();
         zadanieVstupovStage.setTitle("GEFCO Grafikon");
 
+        statVzdialenostStage = new Stage();
+        statVzdialenostStage.setTitle("Určenie prejdenej vzdialenosti pre daný štát");
+
+        technickeUdajeStage = new Stage();
+        technickeUdajeStage.setTitle("Určenie technických údajov");
+
+        udajeDodavatelaStage = new Stage();
+        udajeDodavatelaStage.setTitle("Pridanie dodávateľa");
+
+        ukazkaStage = new Stage();
+        ukazkaStage.setTitle("Ukážka");
     }
 
 
