@@ -1,8 +1,16 @@
 package data;
 
-public class StatVzdialenostRow {
+import java.io.Serializable;
+
+public class StatVzdialenostRow implements Serializable {
     private String stat;
     private String vzdialenost;
+
+    public StatVzdialenostRow(String stat, String vzdialenost) {
+        this.stat = stat;
+        this.vzdialenost = vzdialenost;
+    }
+
 
     public String getStat() {
         return stat;
@@ -20,8 +28,5 @@ public class StatVzdialenostRow {
         this.vzdialenost = vzdialenost;
     }
 
-    public StatVzdialenostRow(String stat, String vzdialenost) {
-        this.stat = stat;
-        this.vzdialenost = vzdialenost;
-    }
+
 }
