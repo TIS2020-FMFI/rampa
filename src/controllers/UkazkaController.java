@@ -123,7 +123,7 @@ public class UkazkaController implements Initializable {
     }
 
     public void loadData() {
-        tableView.setFixedCellSize(30.0);
+        tableView.setFixedCellSize(CELL_HEIGHT);
         data.add(new UkazkaRow("", "", "", "", "", "", "", "", ""));
         tableView.setItems(data);
     }

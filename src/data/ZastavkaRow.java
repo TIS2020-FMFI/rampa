@@ -2,7 +2,9 @@ package data;
 
 import javafx.scene.control.CheckBox;
 
-public class ZastavkaRow {
+import java.io.Serializable;
+
+public class ZastavkaRow implements Serializable {
     private String cofor;
     private String meno;
     private Integer vzdialenost;
@@ -11,7 +13,8 @@ public class ZastavkaRow {
     private String typZastavky;
     private String loading;
     private String rampa;
-    private CheckBox zaciatokST;
+    private transient CheckBox zaciatokST;
+    private boolean zaciatokSTchecked;
     private String cas;
     private Integer freqCofor;
 
@@ -29,6 +32,7 @@ public class ZastavkaRow {
         this.loading = loading;
         this.rampa = rampa;
         this.zaciatokST = zaciatokST;
+        zaciatokSTchecked = zaciatokST.isSelected();
 
         this.cas = cas;
         this.freqCofor = freqCofor;

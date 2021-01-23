@@ -1,7 +1,5 @@
 package data;
 
-import javafx.scene.control.CheckBox;
-
 public class UkazkaRow {
 
     private String menoZastavky;
@@ -13,6 +11,21 @@ public class UkazkaRow {
     private String den;
     private String novyDen;
     private String novyCasPrichodu;
+
+
+    public UkazkaRow(String menoZastavky, String miesto, String vzdialenost, String rychlost, String casPrichodu,
+                     String casOdchodu, String den, String novyDen, String novyCasPrichodu) {
+        this.menoZastavky = menoZastavky;
+        this.miesto = miesto;
+        this.vzdialenost = vzdialenost;
+        this.rychlost = rychlost;
+        this.casPrichodu = casPrichodu;
+        this.casOdchodu = casOdchodu;
+        this.den = den;
+        this.novyDen = novyDen;
+        this.novyCasPrichodu = novyCasPrichodu;
+    }
+
 
     public String getMenoZastavky() {
         return menoZastavky;
@@ -86,16 +99,4 @@ public class UkazkaRow {
         this.novyCasPrichodu = novyCasPrichodu;
     }
 
-    public UkazkaRow(String menoZastavky, String miesto, String vzdialenost, String rychlost, String casPrichodu,
-                     String casOdchodu, String den, String novyDen, String novyCasPrichodu) {
-        this.menoZastavky = menoZastavky;
-        this.miesto = miesto;
-        this.vzdialenost = vzdialenost;
-        this.rychlost = rychlost;
-        this.casPrichodu = casPrichodu;
-        this.casOdchodu = casOdchodu;
-        this.den = den;
-        this.novyDen = novyDen;
-        this.novyCasPrichodu = novyCasPrichodu;
-    }
 }

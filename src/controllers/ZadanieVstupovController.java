@@ -141,7 +141,8 @@ public class ZadanieVstupovController implements Initializable {
 
         rampa.setCellFactory(TextFieldTableCell.forTableColumn());
         rampa.setOnEditCommit( e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setRampa(e.getNewValue()));
-
+        
+        // treba to zmenit na radiobutton len asi to ten TableView nepodporuje alebo nejako zakazat checkboxu viac checknuti ako jedno
 //        zaciatokST.setCellFactory(new CheckBoxTableCell());
 //        zaciatokST.setOnEditCommit( e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setZaciatokST(e.getNewValue()));
 

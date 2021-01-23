@@ -84,7 +84,7 @@ public class StatVzdialenostController implements Initializable {
     }
 
     public void loadData() {
-        tableView.setFixedCellSize(30.0);
+        tableView.setFixedCellSize(CELL_HEIGHT);
         data.add(new StatVzdialenostRow("", ""));
         tableView.setItems(data);
     }
