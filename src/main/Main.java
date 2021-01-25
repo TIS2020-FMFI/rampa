@@ -38,6 +38,7 @@ public class Main extends Application {
     public static Stage statVzdialenostStage = null;
     public static Stage technickeUdajeStage = null;
     public static Stage udajeDodavatelaStage = null;
+    public static Stage vyberCoforStage = null;
     public static Stage ukazkaStage = null;
 
 
@@ -77,6 +78,9 @@ public class Main extends Application {
 
         udajeDodavatelaStage = new Stage();
         udajeDodavatelaStage.setTitle("Pridanie dodávateľa");
+
+        vyberCoforStage = new Stage();
+        vyberCoforStage.setTitle("Vyberanie dodávateľa");
 
         ukazkaStage = new Stage();
         ukazkaStage.setTitle("Ukážka");
