@@ -29,33 +29,33 @@ public class UdajeDodavatelaController implements Initializable{
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private TextField coforInput;
+    public TextField coforInput;
     @FXML
-    private TextField supplierInput;
+    public TextField supplierInput;
     @FXML
-    private TextField townInput;
+    public TextField townInput;
     @FXML
-    private TextField zipcodeInput;
+    public TextField zipcodeInput;
     @FXML
-    private TextField countryInput;
+    public TextField countryInput;
     @FXML
-    private TextField loadingInput;
+    public TextField loadingInput;
     @FXML
-    private TextField pondelokInput;
+    public TextField pondelokInput;
     @FXML
-    private TextField utorokInput;
+    public TextField utorokInput;
     @FXML
-    private TextField stredaInput;
+    public TextField stredaInput;
     @FXML
-    private TextField stvrtokInput;
+    public TextField stvrtokInput;
     @FXML
-    private TextField piatokInput;
+    public TextField piatokInput;
     @FXML
-    private TextField sobotaInput;
+    public TextField sobotaInput;
     @FXML
-    private TextField nedelaInput;
+    public TextField nedelaInput;
     @FXML
-    private Label errorLabel;
+    public Label errorLabel;
 
     private List<TextField> coforDetails;
     private List<TextField> openingHours;
@@ -106,7 +106,7 @@ public class UdajeDodavatelaController implements Initializable{
 
     public void vyberCoforBtnClick(MouseEvent mouseEvent) throws IOException {
         errorLabel.setVisible(false);
-        vyberCoforController = new VyberCoforController();
+        vyberCoforController = new VyberCoforController(this);
 
         Main.vyberCoforStage.show();
     }

@@ -21,10 +21,12 @@ public class VyberCoforController implements Initializable{
 
     private StringBuilder sb = new StringBuilder("");
     private String path;
+    UdajeDodavatelaController udajeDodavatelaController;
 
-    public VyberCoforController() throws IOException {
+    public VyberCoforController(UdajeDodavatelaController udajeDodavatelaController) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/vyberCofor.fxml"));
         loader.setController(this);
+        this.udajeDodavatelaController = udajeDodavatelaController;
 
         Main.vyberCoforStage.setScene(new Scene(loader.load()));
     }
@@ -43,6 +45,13 @@ public class VyberCoforController implements Initializable{
     }
 
     public void potvrditBtnClick(MouseEvent mouseEvent) throws IOException {
+        // over ci coforInput.getText() je cofor, ktory existuje v cofors.txt subore, ak ano,
+
+        // tak nastav triedne premenne udajeDodavatelaController na hodnoty zo suboru, kde sa nachadza ten subor
+        this.udajeDodavatelaController.coforInput.setText(coforInput.getText());
+        // this.udajeDodavatelaController.supplierInput.setText(.......);
+        // this.udajeDodavatelaController.townInput.setText(.......);
+        // a tak nastavit vsetky premenne...
         Main.vyberCoforStage.hide();
     }
 
