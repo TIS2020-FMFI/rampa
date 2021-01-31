@@ -59,7 +59,7 @@ public class UdajeDodavatelaController implements Initializable{
 
     private List<TextField> coforDetails;
     private List<TextField> openingHours;
-    private List<String> cofors;
+
     private String path;
 
     public UdajeDodavatelaController() throws IOException {
@@ -172,7 +172,7 @@ public class UdajeDodavatelaController implements Initializable{
     //ak bol cofor predtym ulozeny, vymaze ho, aby nebola duplicita
     public void previouslySaved(String cofor) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(path));
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         String line;
 
         while((line = br.readLine())!=null)
@@ -188,5 +188,4 @@ public class UdajeDodavatelaController implements Initializable{
     }
 
 }
-
 

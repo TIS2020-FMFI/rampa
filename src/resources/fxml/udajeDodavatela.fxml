@@ -12,8 +12,8 @@
 <?import javafx.scene.text.Text?>
 
 <ScrollPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <content>
-    <AnchorPane fx:id="anchorPane" prefHeight="476.0" prefWidth="783.0">
+   <content>
+      <AnchorPane fx:id="anchorPane" prefHeight="476.0" prefWidth="783.0">
          <children>
             <VBox alignment="CENTER" prefHeight="330.0" prefWidth="827.0" AnchorPane.topAnchor="100.0">
                <children>
@@ -270,5 +270,5 @@
                </font>
             </Text>
          </children></AnchorPane>
-  </content>
+   </content>
 </ScrollPane>
