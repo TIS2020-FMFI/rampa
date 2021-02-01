@@ -1,0 +1,4 @@
+cofor#12345;supplier#xx;town#Trnava;zipcode#040 11;country#Nemecko;loading#unpacking<pondelok#08:00-23:00;utorok#07:30-12:15;streda#12:00-14:00;stvrtok#12:00-14:00;piatok#12:30-14:30;sobota#17:00-23:30;nedela#12:00-14:00
+cofor#12346;supplier#aa;town#Trnava;zipcode#040 11;country#Nemecko;loading#unpacking$pondelok#08:00-23:00;utorok#07:30-12:15;streda#12:00-14:00;stvrtok#12:00-14:00;piatok#12:30-14:30;sobota#17:00-23:30;nedela#12:00-14:00
+cofor#12347;supplier#bb;town#Trnava;zipcode#040 11;country#Nemecko;loading#unpacking$pondelok#08:00-23:00;utorok#07:30-12:15;streda#12:00-14:00;stvrtok#12:00-14:00;piatok#12:30-14:30;sobota#17:00-23:30;nedela#12:00-14:00
+cofor#12348;supplier#cc;town#Trnava;zipcode#040 11;country#Nemecko;loading#unpacking$pondelok#08:00-23:00;utorok#07:30-12:15;streda#12:00-14:00;stvrtok#12:00-14:00;piatok#12:30-14:30;sobota#17:00-23:30;nedela#12:00-14:00
