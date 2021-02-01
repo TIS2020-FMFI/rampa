@@ -7,7 +7,7 @@ package data;
  * cislo coforu tabulky zastavok u dodavatela, tak sa maju vygenerovat ulozene udaje pre daneho dodavatela.
  */
 public class CoforData {
-    private String cofor; //6 znakov 2 medzery 2 znaky (cisla a pismena)
+    private Integer cofor;
     private String supplier;
     private String town;
     private String zipcode;
@@ -22,7 +22,7 @@ public class CoforData {
     private String sobota;
     private String nedela;
 
-    public CoforData(String cofor, String supplier, String town, String zipcode, String country, String loading,
+    public CoforData(Integer cofor, String supplier, String town, String zipcode, String country, String loading,
                      String pondelok, String utorok, String streda, String stvrtok, String piatok,
                      String sobota, String nedela) {
         this.cofor = cofor;
@@ -40,11 +40,11 @@ public class CoforData {
         this.nedela = nedela;
     }
 
-    public String getCofor() {
+    public Integer getCofor() {
         return cofor;
     }
 
-    public void setCofor(String cofor) {
+    public void setCofor(Integer cofor) {
         this.cofor = cofor;
     }
 
