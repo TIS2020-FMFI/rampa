@@ -24,7 +24,9 @@ import org.apache.poi.ss.util.CellUtil;
 import org.apache.poi.ss.util.RegionUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -119,7 +121,10 @@ public class ZadanieVstupovController implements Initializable {
 
     private void editableCols() {
         cofor.setCellFactory(TextFieldTableCell.forTableColumn());
-        cofor.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setCofor(e.getNewValue()));
+        cofor.setOnEditCommit(e -> {e.getTableView().getItems().get(e.getTablePosition().getRow()).setCofor(e.getNewValue());
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setMeno(dopln(1, e.getNewValue()));
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setLoading(dopln(5, e.getNewValue()));
+        });
 
         meno.setCellFactory(TextFieldTableCell.forTableColumn());
         meno.setOnEditCommit( e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setMeno(e.getNewValue()));
@@ -215,6 +220,25 @@ public class ZadanieVstupovController implements Initializable {
         Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
         Sheet sheet = workbook.createSheet("Meno Harku");
         technickeUdajeController.writeTechnickeUdaje(workbook, sheet,1, 1);
+    }
+//funkcia dopln - x = ktora informacia sa ma doplnit (1 = supplier, 2 = town, atd oddelene ";"
+    //          - cofor - input cofor, najde ho v txt a v danom riadku najde x
+    private String dopln(int x, String cofor) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/resources/database/cofors.txt"));
+            String line;
+            String cele = "";
+            while((line = br.readLine())!=null)
+            {
+                if(cofor.equals(line.split(";")[0].split("#")[1]))
+                {
+
+                    return line.split("<")[0].split(";")[x].split("#")[1];
+                }
+            }
+        }
+        catch (Exception hs) { }
+        return "";
     }
 
     static class MyStringConverter extends StringConverter<Integer> {

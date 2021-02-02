@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane fx:id="anchorPane" cache="true" minWidth="-Infinity" prefHeight="533.0" prefWidth="1020.0">
+      <Label fx:id="uvodnyLabel" layoutX="57.0" layoutY="38.0" text="Zadanie vstupov pre grafikon -  " AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="28.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="95.0" text="Štart:" AnchorPane.leftAnchor="25.0" />
+      <TextField layoutX="54.0" layoutY="92.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="91.0" />
+      <Label layoutX="225.0" layoutY="95.0" text="Miesto štartu:" />
+      <TextField layoutX="53.0" layoutY="91.0" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="91.0" />
+      <Label layoutX="555.0" layoutY="93.0" text="Čas:" />
+      <Label layoutX="520.0" layoutY="128.0" text="Kód dní RT:" />
+      <TextField layoutX="585.0" layoutY="90.0" prefHeight="25.0" prefWidth="79.0" AnchorPane.leftAnchor="585.0" />
+      <TextField layoutX="598.0" layoutY="124.0" prefHeight="25.0" prefWidth="80.0" AnchorPane.leftAnchor="585.0" />
+      <Label layoutX="687.0" layoutY="128.0" text="Kód dní ST:" />
+      <TextField layoutX="763.0" layoutY="123.0" prefHeight="25.0" prefWidth="83.0" AnchorPane.leftAnchor="750.0" />
+      <Label layoutX="524.0" layoutY="166.0" text="Určiť podľa:" AnchorPane.leftAnchor="517.0" />
+      <VBox layoutX="588.0" layoutY="161.0" prefHeight="56.0" prefWidth="100.0" AnchorPane.leftAnchor="588.0">
+         <RadioButton mnemonicParsing="false" text="Start">
+            <toggleGroup>
+               <ToggleGroup fx:id="group1" />
+            </toggleGroup>
+         </RadioButton>
+         <RadioButton mnemonicParsing="false" text="Dodávateľ" toggleGroup="$group1" />
+         <RadioButton mnemonicParsing="false" text="Stop" toggleGroup="$group1" />
+      </VBox>
+      <ChoiceBox layoutX="670.0" layoutY="172.0" prefHeight="25.0" prefWidth="99.0" />
+      <Button layoutX="883.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#pridatUdajeDodavatelaBtnClick" prefHeight="52.0" prefWidth="97.0" text="Pridať/Upraviť dodávateľa" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="11.0" />
+      <VBox fx:id="tableVbox" layoutX="11.0" layoutY="244.0" prefHeight="303.0" prefWidth="998.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="244.0">
+         <TableView id="my-table" fx:id="tableView" editable="true" prefHeight="67.0">
+            <columns>
+               <TableColumn fx:id="cofor" prefWidth="88.0" style="-fx-alignment: CENTER;" text="COFOR" />
+               <TableColumn fx:id="meno" prefWidth="120.33332824707031" style="-fx-alignment: CENTER;" text="Meno" />
+               <TableColumn fx:id="vzdialenost" prefWidth="79.66667175292969" style="-fx-alignment: CENTER;" text="Vzdialenosť" />
+               <TableColumn fx:id="rychlost" prefWidth="65.0" style="-fx-alignment: CENTER;" text="Rýchlosť" />
+               <TableColumn fx:id="dlzkaNakladky" prefWidth="73.0" style="-fx-alignment: CENTER;" text="Dĺžka nákl." />
+               <TableColumn fx:id="typZastavky" prefWidth="132.66668701171875" style="-fx-alignment: CENTER;" text="Typ zastávky" />
+               <TableColumn fx:id="loading" minWidth="1.0" prefWidth="117.33331298828125" style="-fx-alignment: CENTER;" text="Loading" />
+               <TableColumn fx:id="rampa" prefWidth="73.0" style="-fx-alignment: CENTER;" text="Rampa" />
+               <TableColumn fx:id="zaciatokST" minWidth="1.0" prefWidth="72.0" style="-fx-alignment: CENTER;" text="Začiatok ST" />
+               <TableColumn fx:id="cas" prefWidth="44.0" style="-fx-alignment: CENTER;" text="Čas" />
+               <TableColumn fx:id="freqCofor" prefWidth="123.0" style="-fx-alignment: CENTER;" text="FREQ COFOR" />
+            </columns>
+            <effect>
+               <Blend />
+            </effect>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </TableView>
+         <HBox fillHeight="false" prefHeight="17.0" prefWidth="986.0">
+            <VBox prefHeight="100.0" prefWidth="119.0">
+               <Button mnemonicParsing="false" onMouseClicked="#addRowInTable" prefHeight="25.0" prefWidth="114.0" text="Pridať nákladku">
+                  <VBox.margin>
+                     <Insets bottom="5.0" top="5.0" />
+                  </VBox.margin>
+               </Button>
+               <Button fx:id="tableView2" mnemonicParsing="false" onMouseClicked="#deleteRowInTable" prefHeight="25.0" prefWidth="116.0" text="Odobrať nákladku">
+                  <VBox.margin>
+                     <Insets bottom="40.0" />
+                  </VBox.margin>
+               </Button>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="61.0" prefWidth="100.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+               <ChoiceBox prefHeight="25.0" prefWidth="99.0" />
+            </VBox>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="41.0" prefWidth="291.0">
+            <Button mnemonicParsing="false" onMouseClicked="#vygenerovatUkazkuBtnClick" prefHeight="16.0" prefWidth="182.0" styleClass="lion" stylesheets="@../../css/style.css" text="Vygenerovať ukážku">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="95.0" styleClass="dark-blue" stylesheets="@../../css/style.css" text="Uložiť">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#exportExcelBtnClick" prefHeight="28.0" prefWidth="82.0" styleClass="green" stylesheets="@../../css/style.css" text="Exportovať">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </HBox>
+         <Button mnemonicParsing="false" onMouseClicked="#pridatDlzkuTrasyBtnClick" stylesheets="@../../css/style.css" text="Pridať dĺžku trasy v štátoch" />
+         <Button mnemonicParsing="false" onMouseClicked="#pridatTechnickeUdajeBtnClick" text="Pridať technické údaje" />
+         <HBox alignment="BOTTOM_RIGHT" prefHeight="42.0" prefWidth="998.0">
+            <Button mnemonicParsing="false" onMouseClicked="#goBackToIntroBtnClick" text="Späť do menu">
+               <HBox.margin>
+                  <Insets bottom="5.0" right="5.0" />
+               </HBox.margin>
+            </Button>
+         </HBox>
+      </VBox>
+   </AnchorPane>
+</ScrollPane>
