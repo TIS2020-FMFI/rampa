@@ -233,7 +233,7 @@ public class ZadanieVstupovController implements Initializable {
                 if(cofor.equals(line.split(";")[0].split("#")[1]))
                 {
 
-                    return line.split("<")[0].split(";")[x].split("#")[1];
+                    return line.split("\\$")[0].split(";")[x].split("#")[1];
                 }
             }
         }

@@ -22,8 +22,7 @@ public class VyberCoforController implements Initializable{
     @FXML
     private Label errorLabel;
 
-    private StringBuilder sb = new StringBuilder("");
-    private String path;
+    private StringBuilder sb = new StringBuilder();
     UdajeDodavatelaController udajeDodavatelaController;
 
     private List<String> cofors = new ArrayList<>();
@@ -38,10 +37,6 @@ public class VyberCoforController implements Initializable{
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        URL output = getClass().getResource("../resources/database/cofors.txt");
-        path = output.getPath();
-
         try {
             readSavedCofors();
         } catch (IOException e) {
@@ -72,7 +67,7 @@ public class VyberCoforController implements Initializable{
     }
 
     public void readSavedCofors() throws  IOException{
-        BufferedReader br = new BufferedReader(new FileReader(path));
+        BufferedReader br = new BufferedReader(new FileReader("src/resources/database/cofors.txt"));
         String line;
 
         while((line = br.readLine())!=null)

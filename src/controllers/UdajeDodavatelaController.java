@@ -60,8 +60,6 @@ public class UdajeDodavatelaController implements Initializable{
     private List<TextField> coforDetails;
     private List<TextField> openingHours;
 
-    private String path;
-
     public UdajeDodavatelaController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/udajeDodavatela.fxml"));
         loader.setController(this);
@@ -76,9 +74,6 @@ public class UdajeDodavatelaController implements Initializable{
 
         openingHours = new ArrayList<>(
                 Arrays.asList(pondelokInput, utorokInput, stredaInput, stvrtokInput, piatokInput, sobotaInput, nedelaInput));
-
-        URL output = getClass().getResource("../resources/database/cofors.txt");
-        path = output.getPath();
     }
 
     public void potvrditBtnClick(MouseEvent mouseEvent) throws IOException {
@@ -126,7 +121,7 @@ public class UdajeDodavatelaController implements Initializable{
             data.append(";");
         }
         data.setLength(data.length() - 1);
-        data.append("<");
+        data.append("$");
         for (int i = 0; i < openingHours.size(); i++){
             data.append(days.get(i));
             data.append(openingHours.get(i).getText());
@@ -134,7 +129,7 @@ public class UdajeDodavatelaController implements Initializable{
         }
         data.setLength(data.length() - 1);
 
-        FileWriter fw = new FileWriter(path, true);
+        FileWriter fw = new FileWriter("src/resources/database/cofors.txt", true);
         PrintWriter pw = new PrintWriter(fw);
 
         pw.print(data);
@@ -171,7 +166,7 @@ public class UdajeDodavatelaController implements Initializable{
 
     //ak bol cofor predtym ulozeny, vymaze ho, aby nebola duplicita
     public void previouslySaved(String cofor) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(path));
+        BufferedReader br = new BufferedReader(new FileReader("src/resources/database/cofors.txt"));
         StringBuilder sb = new StringBuilder();
         String line;
 
@@ -182,7 +177,7 @@ public class UdajeDodavatelaController implements Initializable{
         }
 
         br.close();
-        FileWriter fw = new FileWriter(new File(path));
+        FileWriter fw = new FileWriter(new File("src/resources/database/cofors.txt"));
         fw.write(sb.toString());
         fw.close();
     }
