@@ -23,6 +23,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -69,6 +71,10 @@ public class InputsEntryController implements Initializable {
     private TableColumn<OneStopRow, Integer> freqCofor;
     @FXML
     private VBox tableVbox; // box v ktorom je tabulka a buttony pod nou
+    @FXML
+    private ChoiceBox determinedBySupplier;
+    @FXML
+    private ChoiceBox rowToAddOrDelete;
 
     public InputsEntryController(Main main, final String grafikonName) throws IOException {
         this.main = main;
@@ -237,6 +243,25 @@ public class InputsEntryController implements Initializable {
         }
         catch (Exception hs) { }
         return "";
+    }
+
+    public void setDeterminedBySupplier(MouseEvent mouseEvent) {
+        List<String> items = new ArrayList<>();
+        determinedBySupplier.setItems(listAddedSuppliersIn(items));
+    }
+
+    public void setRowToAddOrDelete(MouseEvent mouseEvent) {
+        List<String> items = new ArrayList<>();
+        items.add("-");
+        rowToAddOrDelete.setItems(listAddedSuppliersIn(items));
+    }
+
+    public ObservableList listAddedSuppliersIn(List items) {
+        TableColumn<OneStopRow, String> column = cofor ;
+        for (OneStopRow item : tableView.getItems()) {
+            items.add(column.getCellObservableValue(item).getValue());
+        }
+        return FXCollections.observableArrayList(items);
     }
 
     static class MyStringConverter extends StringConverter<Integer> {

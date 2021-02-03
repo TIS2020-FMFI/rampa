@@ -44,7 +44,7 @@
          <RadioButton mnemonicParsing="false" text="Dodávateľ" toggleGroup="$group1" />
          <RadioButton mnemonicParsing="false" text="Stop" toggleGroup="$group1" />
       </VBox>
-      <ChoiceBox layoutX="670.0" layoutY="172.0" prefHeight="25.0" prefWidth="99.0" />
+      <ChoiceBox fx:id="determinedBySupplier" layoutX="670.0" layoutY="172.0" onMouseClicked="#setDeterminedBySupplier" prefHeight="25.0" prefWidth="99.0" />
       <Button layoutX="883.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#addSupplierDataBtnClick" prefHeight="52.0" prefWidth="97.0" text="Pridať/Upraviť dodávateľa" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="11.0" />
       <VBox fx:id="tableVbox" layoutX="11.0" layoutY="244.0" prefHeight="303.0" prefWidth="998.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="244.0">
          <TableView id="my-table" fx:id="tableView" editable="true" prefHeight="67.0">
@@ -85,7 +85,7 @@
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
-               <ChoiceBox prefHeight="25.0" prefWidth="99.0" />
+               <ChoiceBox fx:id="rowToAddOrDelete" onMouseClicked="#setRowToAddOrDelete" prefHeight="25.0" prefWidth="99.0" />
             </VBox>
          </HBox>
          <HBox alignment="CENTER" prefHeight="41.0" prefWidth="291.0">
