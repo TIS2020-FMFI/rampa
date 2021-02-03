@@ -19,19 +19,19 @@
                <children>
                   <TableView fx:id="tableView" editable="true" prefHeight="65.0" prefWidth="503.0">
                     <columns>
-                      <TableColumn fx:id="stat" prefWidth="288.0" style="-fx-alignment: CENTER;" text="Štát" />
-                      <TableColumn fx:id="vzdialenost" prefWidth="214.0" style="-fx-alignment: CENTER;" text="Prejdená vzdialenosť (km)" />
+                      <TableColumn fx:id="state" prefWidth="288.0" style="-fx-alignment: CENTER;" text="Štát" />
+                      <TableColumn fx:id="distance" prefWidth="214.0" style="-fx-alignment: CENTER;" text="Prejdená vzdialenosť (km)" />
                     </columns>
                   </TableView>
-                  <Button mnemonicParsing="false" onMouseClicked="#pridatStatBtnClick" prefHeight="25.0" prefWidth="86.0" text="Pridať štát">
+                  <Button mnemonicParsing="false" onMouseClicked="#addStateBtnClick" prefHeight="25.0" prefWidth="86.0" text="Pridať štát">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="odobratStatBtnClick" mnemonicParsing="false" onMouseClicked="#odobratStatBtnClick" prefHeight="25.0" prefWidth="85.0" text="Odobrať štát" />
+                  <Button fx:id="odobratStatBtnClick" mnemonicParsing="false" onMouseClicked="#removeStateBtnClick" prefHeight="25.0" prefWidth="85.0" text="Odobrať štát" />
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="532.0">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#potvrditBtnClick" prefHeight="34.0" prefWidth="78.0" text="Potvrdiť" />
+                        <Button mnemonicParsing="false" onMouseClicked="#confirmBtnClick" prefHeight="34.0" prefWidth="78.0" text="Potvrdiť" />
                      </children>
                      <VBox.margin>
                         <Insets />

@@ -8,8 +8,8 @@ import java.util.List;
  * grafikonu.
  */
 public class SavedDataWrapper implements Serializable {
-    private ZadanieVstupovHeaderData zadanieVstupovHeaderData;
-    private List<ZastavkaRow> zastavkaRowList;
-    private TechnickeUdaje technickeUdaje;
-    private List<StatVzdialenostRow> statVzdialenostRowList;
+    private HeaderInputData headerInputData;
+    private List<OneStopRow> oneStopRowList;
+    private TechnicalData technicalData;
+    private List<CountryDistances> countryDistancesList;
 }

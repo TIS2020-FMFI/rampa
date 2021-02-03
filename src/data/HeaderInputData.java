@@ -2,7 +2,7 @@ package data;
 
 import java.io.Serializable;
 
-public class ZadanieVstupovHeaderData implements Serializable {
+public class HeaderInputData implements Serializable {
     private String start;
     private String miestoStartu;
     private String cas;
@@ -11,7 +11,7 @@ public class ZadanieVstupovHeaderData implements Serializable {
     private String urcitPodla; // ulozi tam bud string start, dodavatel alebo stop
     private String urcitPodlaDodavatel; // ak urcitPodla je dodavatel, tak tu bude mat ulozeneho dodavatela, inak to bude null
 
-    public ZadanieVstupovHeaderData(String start, String miestoStartu, String cas, Integer kodRT, Integer kodST, String urcitPodla, String urcitPodlaDodavatel) {
+    public HeaderInputData(String start, String miestoStartu, String cas, Integer kodRT, Integer kodST, String urcitPodla, String urcitPodlaDodavatel) {
         this.start = start;
         this.miestoStartu = miestoStartu;
         this.cas = cas;

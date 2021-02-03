@@ -2,7 +2,7 @@ package data;
 
 import java.io.Serializable;
 
-public class TechnickeUdaje implements Serializable {
+public class TechnicalData implements Serializable {
     private String appDateLb;
     private String appDateInput;
     private String flowLb;
@@ -20,10 +20,10 @@ public class TechnickeUdaje implements Serializable {
     private String importLb;
     private Integer importInput;
 
-    public TechnickeUdaje(String appDateLb, String appDateInput, String flowLb, String flowInput, String heightGoodsLb,
-                          String heightGoodsInput, String heightTruckLb, String heightTruckInput, String length1Lb,
-                          String length1Input, String length2Lb, String length2Input, String exportLb, Integer exportInput,
-                          String importLb, Integer importInput) {
+    public TechnicalData(String appDateLb, String appDateInput, String flowLb, String flowInput, String heightGoodsLb,
+                         String heightGoodsInput, String heightTruckLb, String heightTruckInput, String length1Lb,
+                         String length1Input, String length2Lb, String length2Input, String exportLb, Integer exportInput,
+                         String importLb, Integer importInput) {
         this.appDateLb = appDateLb;
         this.appDateInput = appDateInput;
         this.flowLb = flowLb;

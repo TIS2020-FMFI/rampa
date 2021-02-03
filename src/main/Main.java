@@ -1,61 +1,53 @@
 package main;
 
+import data.AllSuppliers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
 
 public class Main extends Application {
 
-    public static Stage uvodnyStage = null;
-    public static Stage zadanieVstupovStage = null;
-    public static Stage statVzdialenostStage = null;
-    public static Stage technickeUdajeStage = null;
-    public static Stage udajeDodavatelaStage = null;
-    public static Stage vyberCoforStage = null;
-    public static Stage ukazkaStage = null;
+    public Stage introStage = null;
+    public Stage inputsEntryStage = null;
+    public Stage stateDistancesStage = null;
+    public Stage technicalDataStage = null;
+    public Stage supplierDataStage = null;
+    public Stage selectCoforStage = null;
+    public Stage previewStage = null;
 
+    public data.AllSuppliers suppliers;
+    public data.SavedDataWrapper tripData;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/intro.fxml"));
-        uvodnyStage = primaryStage;
-        uvodnyStage.setTitle("GEFCO Grafikon");
-        uvodnyStage.getIcons().add(new Image(new FileInputStream("src/resources/images/kamionObr.png")));
-        uvodnyStage.setScene(new Scene(root));
-        uvodnyStage.show();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/intro.fxml"));
+        Parent root = loader.load();
+        controllers.IntroController c = loader.getController();
+        c.setMain(this);
+        introStage = primaryStage;
+        introStage.setTitle("GEFCO Grafikon");
+        introStage.getIcons().add(new Image(new FileInputStream("src/resources/images/kamionObr.png")));
+        introStage.setScene(new Scene(root));
+        introStage.show();
 
         createStages();
     }
 
     // aby sa rychlejsie scrollovalo kedze defaultne sa scrolluje dost pomaly v scroll pane
-    public static void makeFasterScroll(ScrollPane scrollPane, AnchorPane anchorPane, Integer SCROLL_SPEED) {
+    public void makeFasterScroll(ScrollPane scrollPane, AnchorPane anchorPane, Integer SCROLL_SPEED) {
         // aby sa rychlejsie scrollovalo kedze defaultne sa scrolluje dost pomaly
         scrollPane.setContent(anchorPane);
         anchorPane.setOnScroll(event -> {
@@ -66,26 +58,46 @@ public class Main extends Application {
         });
     }
 
-    public static void createStages() {
-        zadanieVstupovStage = new Stage();
-        zadanieVstupovStage.setTitle("GEFCO Grafikon");
+    public void createStages() {
+        inputsEntryStage = new Stage();
+        inputsEntryStage.setTitle("GEFCO Grafikon");
 
-        statVzdialenostStage = new Stage();
-        statVzdialenostStage.setTitle("Určenie prejdenej vzdialenosti pre daný štát");
+        stateDistancesStage = new Stage();
+        stateDistancesStage.setTitle("Určenie prejdenej vzdialenosti pre daný štát");
 
-        technickeUdajeStage = new Stage();
-        technickeUdajeStage.setTitle("Určenie technických údajov");
+        technicalDataStage = new Stage();
+        technicalDataStage.setTitle("Určenie technických údajov");
 
-        udajeDodavatelaStage = new Stage();
-        udajeDodavatelaStage.setTitle("Pridanie dodávateľa");
+        supplierDataStage = new Stage();
+        supplierDataStage.setTitle("Pridanie dodávateľa");
 
-        vyberCoforStage = new Stage();
-        vyberCoforStage.setTitle("Vyberanie dodávateľa");
+        selectCoforStage = new Stage();
+        selectCoforStage.setTitle("Vyberanie dodávateľa");
 
-        ukazkaStage = new Stage();
-        ukazkaStage.setTitle("Ukážka");
+        previewStage = new Stage();
+        previewStage.setTitle("Ukážka");
     }
 
+    public Main()
+    {
+        try {
+            suppliers = new AllSuppliers();
+        } catch (IOException ex) {
+            showExceptionAlert("Suppliers file not found",
+                    "While trying to load the list of suppliers from file " +
+                            data.AllSuppliers.suppliersFile + " we have got an exception: " + ex.toString() +
+                            " if the file is missing, it will be created when you add a new supplier.");
+        }
+    }
+
+    public void showExceptionAlert(String title, String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
+    }
 
     public static void main(String[] args) {
         launch(args);

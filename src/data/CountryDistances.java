@@ -2,11 +2,11 @@ package data;
 
 import java.io.Serializable;
 
-public class StatVzdialenostRow implements Serializable {
+public class CountryDistances implements Serializable {
     private String stat;
     private String vzdialenost;
 
-    public StatVzdialenostRow(String stat, String vzdialenost) {
+    public CountryDistances(String stat, String vzdialenost) {
         this.stat = stat;
         this.vzdialenost = vzdialenost;
     }

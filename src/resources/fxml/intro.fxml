@@ -28,7 +28,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="vytvorGrafikonBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#vytvoritGrafikonBtnClick" text="Vytvoriť nový grafikon">
+                  <Button fx:id="createTripBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createTripBtnClick" text="Vytvoriť nový grafikon">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
@@ -46,7 +46,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#nacitatGrafikonBtnClick" prefHeight="25.0" prefWidth="135.0" text="Načítať grafikon">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loadTripBtnClick" prefHeight="25.0" prefWidth="135.0" text="Načítať grafikon">
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>

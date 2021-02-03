@@ -147,7 +147,7 @@
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="pondelokInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
+                                    <TextField fx:id="mondayInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -161,7 +161,7 @@
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="utorokInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
+                                    <TextField fx:id="tuesdayInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -175,7 +175,7 @@
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="stredaInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
+                                    <TextField fx:id="wednesdayInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -189,7 +189,7 @@
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="stvrtokInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
+                                    <TextField fx:id="thursdayInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -203,7 +203,7 @@
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="piatokInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
+                                    <TextField fx:id="fridayInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -217,7 +217,7 @@
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="sobotaInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
+                                    <TextField fx:id="saturdayInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -231,7 +231,7 @@
                                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="nedelaInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
+                                    <TextField fx:id="sundayInput" alignment="CENTER" prefHeight="29.0" prefWidth="196.0" style="-fx-border-color: gray;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -250,15 +250,15 @@
             <VBox alignment="CENTER" layoutX="214.0" layoutY="403.0" prefHeight="54.0" prefWidth="401.0">
                <children>
                   <Label fx:id="errorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="401.0" text="Nevyplnili ste všetky údaje!" textFill="RED" visible="false" />
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#potvrditBtnClick" prefHeight="34.0" prefWidth="78.0" text="Potvrdiť">
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#saveBtnClick" prefHeight="34.0" prefWidth="78.0" text="Potvrdiť">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </VBox>
-            <Button layoutX="37.0" layoutY="395.0" mnemonicParsing="false" onMouseClicked="#vyberCoforBtnClick" prefHeight="69.0" prefWidth="97.0" text="Vybrať/upraviť existujúceho dodávateľa" wrapText="true" />
-            <Button layoutX="640.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#goBackToZadanieVstupovBtnClick" text="Späť do Zadania vstupov" />
+            <Button layoutX="37.0" layoutY="395.0" mnemonicParsing="false" onMouseClicked="#selectCoforBtnClick" prefHeight="69.0" prefWidth="97.0" text="Vybrať/upraviť existujúceho dodávateľa" wrapText="true" />
+            <Button layoutX="640.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#cancelBtnClick" text="Späť do Zadania vstupov" />
             <Text layoutX="37.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Údaje dodávateľa">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -272,3 +272,4 @@
          </children></AnchorPane>
    </content>
 </ScrollPane>
+

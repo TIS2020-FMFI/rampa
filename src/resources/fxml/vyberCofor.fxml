@@ -10,8 +10,8 @@
    <children>
       <TextArea fx:id="savedCoforsOutput" editable="false" layoutX="16.0" layoutY="21.0" prefHeight="283.0" prefWidth="568.0" />
       <TextField fx:id="coforInput" layoutX="226.0" layoutY="344.0" />
-      <Button fx:id="spatBtn" layoutX="33.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#spatBtnClick" text="Späť" />
-      <Button fx:id="potvrditBtn" layoutX="516.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#potvrditBtnClick" text="Potvrdiť" />
+      <Button fx:id="backBtn" layoutX="33.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#backBtnClick" text="Späť" />
+      <Button fx:id="confirmBtn" layoutX="516.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#confirmBtnClick" text="Potvrdiť" />
       <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="319.0" prefHeight="17.0" prefWidth="247.0" text="Zadajte COFOR zo zoznamu" />
    </children>
 </Pane>

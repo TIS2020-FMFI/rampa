@@ -1,7 +1,6 @@
 package controllers;
 
-import data.StatVzdialenostRow;
-import data.ZastavkaRow;
+import data.CountryDistances;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,10 +19,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StatVzdialenostController implements Initializable {
+public class StateDistancesController implements Initializable {
     final Integer CELL_HEIGHT = 30;
     final int SCROLL_SPEED = 6;
-    ObservableList<StatVzdialenostRow> data = FXCollections.observableArrayList();
+    ObservableList<CountryDistances> data = FXCollections.observableArrayList();
 
     @FXML
     private ScrollPane scrollPane;
@@ -32,24 +31,26 @@ public class StatVzdialenostController implements Initializable {
     @FXML
     private VBox tableVbox;
     @FXML
-    private TableView<StatVzdialenostRow> tableView;
+    private TableView<CountryDistances> tableView;
     @FXML
-    private TableColumn<StatVzdialenostRow, String> stat;
+    private TableColumn<CountryDistances, String> state;
     @FXML
-    private TableColumn<StatVzdialenostRow, String> vzdialenost;
+    private TableColumn<CountryDistances, String> distance;
 
+    private Main main;
 
-    public StatVzdialenostController() throws IOException {
+    public StateDistancesController(Main main) throws IOException {
+        this.main = main;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/prejdenaVzdialenost.fxml"));
         loader.setController(this);
 
-        Main.statVzdialenostStage.setScene(new Scene(loader.load()));
-        Main.statVzdialenostStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+        main.stateDistancesStage.setScene(new Scene(loader.load()));
+        main.stateDistancesStage.widthProperty().addListener((obs, oldVal, newVal) -> {
             anchorPane.setPrefWidth((Double) newVal - 30);
             scrollPane.setPrefWidth((Double) newVal);
         });
 
-        Main.statVzdialenostStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+        main.stateDistancesStage.heightProperty().addListener((obs, oldVal, newVal) -> {
             anchorPane.setPrefHeight((Double) newVal - 50);
             scrollPane.setPrefWidth((Double) newVal);
         });
@@ -60,7 +61,7 @@ public class StatVzdialenostController implements Initializable {
         initTable();
         loadData();
 
-        Main.makeFasterScroll(scrollPane, anchorPane, SCROLL_SPEED);
+        main.makeFasterScroll(scrollPane, anchorPane, SCROLL_SPEED);
     }
 
     private void initTable() {
@@ -68,34 +69,34 @@ public class StatVzdialenostController implements Initializable {
     }
 
     private void initCols() {
-        stat.setCellValueFactory(new PropertyValueFactory<>("stat"));
-        vzdialenost.setCellValueFactory(new PropertyValueFactory<>("vzdialenost"));
+        state.setCellValueFactory(new PropertyValueFactory<>("state"));
+        distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
 
         editableCols();
     }
 
     private void editableCols() {
-        stat.setCellFactory(TextFieldTableCell.forTableColumn());
-        stat.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setStat(e.getNewValue()));
+        state.setCellFactory(TextFieldTableCell.forTableColumn());
+        state.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setStat(e.getNewValue()));
 
-        vzdialenost.setCellFactory(TextFieldTableCell.forTableColumn());
-        vzdialenost.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setVzdialenost(e.getNewValue()));
+        distance.setCellFactory(TextFieldTableCell.forTableColumn());
+        distance.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setVzdialenost(e.getNewValue()));
 
     }
 
     public void loadData() {
         tableView.setFixedCellSize(CELL_HEIGHT);
-        data.add(new StatVzdialenostRow("", ""));
+        data.add(new CountryDistances("", ""));
         tableView.setItems(data);
     }
 
-    public void pridatStatBtnClick(MouseEvent mouseEvent) {
+    public void addStateBtnClick(MouseEvent mouseEvent) {
         tableView.setPrefHeight(tableView.getPrefHeight() + CELL_HEIGHT);
         tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
-        data.add(new StatVzdialenostRow("", ""));
+        data.add(new CountryDistances("", ""));
     }
 
-    public void odobratStatBtnClick(MouseEvent mouseEvent) {
+    public void removeStateBtnClick(MouseEvent mouseEvent) {
         if (tableView.getPrefHeight() > CELL_HEIGHT*2 + 6) {
             tableView.setPrefHeight(tableView.getPrefHeight() - CELL_HEIGHT);
             tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
@@ -103,8 +104,8 @@ public class StatVzdialenostController implements Initializable {
         }
     }
 
-    public void potvrditBtnClick(MouseEvent mouseEvent) {
-        Main.zadanieVstupovStage.show();
-        Main.statVzdialenostStage.hide();
+    public void confirmBtnClick(MouseEvent mouseEvent) {
+        main.inputsEntryStage.show();
+        main.stateDistancesStage.hide();
     }
 }

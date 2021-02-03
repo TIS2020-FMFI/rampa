@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class TechnickeUdajeController implements Initializable {
+public class TechnicalDataController implements Initializable {
 
     @FXML
     private ScrollPane scrollPane;
@@ -71,16 +71,18 @@ public class TechnickeUdajeController implements Initializable {
     private List<Label> labels;
     private List<TextField> inputs;
 
-    public TechnickeUdajeController() throws IOException {
+    Main main;
+
+    public TechnicalDataController(Main main) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/technickeUdaje.fxml"));
         loader.setController(this);
 
-        Main.technickeUdajeStage.setScene(new Scene(loader.load()));
+        main.technicalDataStage.setScene(new Scene(loader.load()));
     }
 
     public void potvrditBtnClick(MouseEvent mouseEvent) {
-        Main.zadanieVstupovStage.show();
-        Main.technickeUdajeStage.hide();
+        main.inputsEntryStage.show();
+        main.technicalDataStage.hide();
     }
 
     @Override

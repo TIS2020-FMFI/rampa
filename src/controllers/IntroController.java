@@ -1,10 +1,7 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import main.Main;
@@ -15,34 +12,41 @@ import java.util.ResourceBundle;
 
 
 public class IntroController implements Initializable {
-    ZadanieVstupovController zadanieVstupovController;
+    InputsEntryController inputsEntryController;
     @FXML
     private Label errorLabel;
     @FXML
     private TextField inputField;
     @FXML
-    private Button vytvorGrafikonBtn;
+    private Button createTripBtn;
 
-    public void vytvoritGrafikonBtnClick(MouseEvent mouseEvent) throws IOException {
+    private Main main;
+
+    public void createTripBtnClick(MouseEvent mouseEvent) throws IOException {
         if (inputField.getText().isBlank()) errorLabel.setVisible(true);
         else {
             errorLabel.setVisible(false);
 
-            zadanieVstupovController = new ZadanieVstupovController(inputField.getText());
-            Main.zadanieVstupovStage.show();
-            Main.uvodnyStage.hide();
+            inputsEntryController = new InputsEntryController(main, inputField.getText());
+            main.inputsEntryStage.show();
+            main.introStage.hide();
 
         }
     }
 
-    public void nacitatGrafikonBtnClick(MouseEvent mouseEvent) {
+    public void setMain(Main main)
+    {
+        this.main = main;
+    }
+
+    public void loadTripBtnClick(MouseEvent mouseEvent) {
         errorLabel.setVisible(false);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // aby bolo focusnute rovno na pisanie mena suboru
-        vytvorGrafikonBtn.setFocusTraversable(false);
+        createTripBtn.setFocusTraversable(false);
         inputField.setFocusTraversable(true);
     }
 }
