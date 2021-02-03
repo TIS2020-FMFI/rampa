@@ -169,18 +169,66 @@ public class InputsEntryController implements Initializable {
     }
 
     public void addRowInTable(MouseEvent mouseEvent) {
-        tableView.setPrefHeight(tableView.getPrefHeight() + CELL_HEIGHT);
-        tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
-        data.add(new OneStopRow("", "",0,0, 0,
-                "","","", new CheckBox(),"",0));
-    }
+        Object value = rowToAddOrDelete.getValue();
+        if(value != null){
+                if(value.toString().equals("-")){
+                    addRow(data.size() - 1);
+                }
+                else{
+                    int index = getIndexOfCoforInTable(value);
+                    if(index >= 0){
+                        addRow(index);
+                    }
+                }
+            }
+        else {
+            addRow(data.size() - 1);
+            }
+        }
 
     public void deleteRowInTable(MouseEvent mouseEvent) {
         if (tableView.getPrefHeight() > CELL_HEIGHT*3 + 6) {
-            tableView.setPrefHeight(tableView.getPrefHeight() - CELL_HEIGHT);
-            tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
-            data.remove(data.size() - 1);
+            Object value = rowToAddOrDelete.getValue();
+            if(value != null){
+                if(value.toString().equals("-")){
+                    deleteRow(data.size() - 1);
+                }
+                else{
+                    int index = getIndexOfCoforInTable(value);
+                    if(index >= 0){
+                        deleteRow(index);
+                    }
+                }
+            }
+            else {
+                deleteRow(data.size() - 1);
+            }
         }
+    }
+
+    public int getIndexOfCoforInTable(Object value) {
+        int index = 0;
+        TableColumn<OneStopRow, String> column = cofor ;
+        for (OneStopRow item : tableView.getItems()) {
+            if (value == column.getCellObservableValue(item).getValue()){
+                return index;
+            }
+            index ++;
+        }
+        return -1;
+    }
+
+    public void addRow(int index) {
+        data.add(index+1, new OneStopRow("", "",0,0, 0,
+                "","","", new CheckBox(),"",0));
+        tableView.setPrefHeight(tableView.getPrefHeight() + CELL_HEIGHT);
+        tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
+    }
+
+    public void deleteRow(int index) {
+        data.remove(index);
+        tableView.setPrefHeight(tableView.getPrefHeight() - CELL_HEIGHT);
+        tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
     }
 
     public void addTripLengthBtnClick(MouseEvent event) throws IOException {
