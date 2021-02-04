@@ -74,13 +74,14 @@ public class TechnicalDataController implements Initializable {
     Main main;
 
     public TechnicalDataController(Main main) throws IOException {
+        this.main = main;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/technickeUdaje.fxml"));
         loader.setController(this);
 
         main.technicalDataStage.setScene(new Scene(loader.load()));
     }
 
-    public void potvrditBtnClick(MouseEvent mouseEvent) {
+    public void confirmBtnClick(MouseEvent mouseEvent) {
         main.inputsEntryStage.show();
         main.technicalDataStage.hide();
     }
@@ -96,7 +97,7 @@ public class TechnicalDataController implements Initializable {
     }
 
     // vyexportuj tabulku technickych udajov
-    public void writeTechnickeUdaje(Workbook workbook, Sheet sheet, int fromRow, int fromColumn) throws IOException {
+    public void writeTechnicalData(Workbook workbook, Sheet sheet, int fromRow, int fromColumn) throws IOException {
         final int COLUMN_HEADER_SPAN = 4;  // cez kolko stlpcov sa ma rozprestierat uvodny riadok "TECHNICAL CHARACTERISTICS OF THE FLOW"
         CellRangeAddress region = new CellRangeAddress(fromRow, fromRow, fromColumn, fromColumn + COLUMN_HEADER_SPAN);
         sheet.addMergedRegion(region);

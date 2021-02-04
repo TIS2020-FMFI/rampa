@@ -1,8 +1,7 @@
 package controllers;
 
-import data.AllSuppliers;
 import data.OneStopRow;
-import data.Supplier;
+import data.SavedDataWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +14,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
 import main.Main;
 
@@ -22,6 +22,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -80,22 +81,22 @@ public class InputsEntryController implements Initializable {
     @FXML
     private ChoiceBox rowToAddOrDelete;
 
-    public InputsEntryController(Main main, final String grafikonName) throws IOException {
+    public InputsEntryController(Main main) throws IOException {
         this.main = main;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/fxml/zadanieVstupov.fxml"));
         loader.setController(this);
 
         main.inputsEntryStage.setScene(new Scene(loader.load()));
-        main.inputsEntryStage.setTitle("Zadanie vstupov pre grafikon - " + grafikonName);
+        main.inputsEntryStage.setTitle("Zadanie vstupov pre grafikon - " + main.tripData.grafikonName);
 
-        setIntroLabel(grafikonName);
+        setIntroLabel(main.tripData.grafikonName);
 
         main.inputsEntryStage.widthProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefWidth((Double) newVal - 30));
         main.inputsEntryStage.heightProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefHeight((Double) newVal));
     }
 
     public void setIntroLabel(String introLabel) {
-        this.introLabel.setText(this.introLabel.getText() + introLabel);
+        this.introLabel.setText(introLabel);
     }
 
     @Override
@@ -239,6 +240,7 @@ public class InputsEntryController implements Initializable {
         if (stateDistancesController == null) {
             stateDistancesController = new StateDistancesController(main);
         }
+        else stateDistancesController.loadData();
         main.stateDistancesStage.show();
         main.inputsEntryStage.hide();
     }
@@ -272,10 +274,28 @@ public class InputsEntryController implements Initializable {
         main.previewStage.show();
     }
 
+    public void saveBtnClick(MouseEvent mouseEvent) {
+        main.tripData.grafikonName = this.introLabel.getText();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Trip File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("MilkRun Trips", "*.milkrun"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File selectedFile = fileChooser.showSaveDialog(main.introStage);
+        if (selectedFile != null) {
+            try {
+                main.tripData.save(selectedFile.getCanonicalPath());
+            } catch (Exception ex)
+            {
+                main.showExceptionAlert("Could not save the trip", "Exception when trying to write the trip to file: " + ex.toString());
+            }
+        }
+    }
+
     public void exportExcelBtnClick(MouseEvent mouseEvent) throws IOException {
         Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
         Sheet sheet = workbook.createSheet("Meno Harku");
-        technicalDataController.writeTechnickeUdaje(workbook, sheet,1, 1);
+        technicalDataController.writeTechnicalData(workbook, sheet,1, 1);
     }
 //funkcia dopln - x = ktora informacia sa ma doplnit (1 = supplier, 2 = town, atd oddelene ";"
     //          - cofor - input cofor, najde ho v txt a v danom riadku najde x
@@ -339,7 +359,6 @@ public class InputsEntryController implements Initializable {
         }
     return open +"-"+close;
     }
-
 
     static class MyStringConverter extends StringConverter<Integer> {
         @Override

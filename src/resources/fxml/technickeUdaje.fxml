@@ -134,7 +134,7 @@
                         <Insets top="50.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#potvrditBtnClick" prefHeight="34.0" prefWidth="78.0" text="Potvrdiť" />
+                        <Button mnemonicParsing="false" onMouseClicked="#confirmBtnClick" prefHeight="34.0" prefWidth="78.0" text="Potvrdiť" />
                      </children>
                   </HBox>
                </children>

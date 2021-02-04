@@ -2,6 +2,7 @@ package main;
 
 import data.AllSuppliers;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -64,6 +66,10 @@ public class Main extends Application {
 
         stateDistancesStage = new Stage();
         stateDistancesStage.setTitle("Určenie prejdenej vzdialenosti pre daný štát");
+        stateDistancesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent we) { }
+        });
 
         technicalDataStage = new Stage();
         technicalDataStage.setTitle("Určenie technických údajov");

@@ -1,6 +1,6 @@
 package controllers;
 
-import data.CountryDistances;
+import data.CountryDistance;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,12 +17,13 @@ import main.Main;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class StateDistancesController implements Initializable {
     final Integer CELL_HEIGHT = 30;
     final int SCROLL_SPEED = 6;
-    ObservableList<CountryDistances> data = FXCollections.observableArrayList();
+    ObservableList<CountryDistance> data = FXCollections.observableArrayList();
 
     @FXML
     private ScrollPane scrollPane;
@@ -31,11 +32,11 @@ public class StateDistancesController implements Initializable {
     @FXML
     private VBox tableVbox;
     @FXML
-    private TableView<CountryDistances> tableView;
+    private TableView<CountryDistance> tableView;
     @FXML
-    private TableColumn<CountryDistances, String> state;
+    private TableColumn<CountryDistance, String> state;
     @FXML
-    private TableColumn<CountryDistances, String> distance;
+    private TableColumn<CountryDistance, String> distance;
 
     private Main main;
 
@@ -77,23 +78,35 @@ public class StateDistancesController implements Initializable {
 
     private void editableCols() {
         state.setCellFactory(TextFieldTableCell.forTableColumn());
-        state.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setStat(e.getNewValue()));
+        state.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setState(e.getNewValue()));
 
         distance.setCellFactory(TextFieldTableCell.forTableColumn());
-        distance.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setVzdialenost(e.getNewValue()));
+        distance.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setDistance(e.getNewValue()));
 
     }
 
     public void loadData() {
         tableView.setFixedCellSize(CELL_HEIGHT);
-        data.add(new CountryDistances("", ""));
+        data.clear();
+        for (CountryDistance cd : main.tripData.countryDistancesList)
+            data.add(new CountryDistance(cd.getState(), cd.getDistance()));
+        if (data.size() == 0)
+            data.add(new CountryDistance("", ""));
         tableView.setItems(data);
+    }
+
+    private void saveData()
+    {
+        List<CountryDistance> output = main.tripData.countryDistancesList;
+        output.clear();
+        for (CountryDistance cd : data)
+            output.add(new CountryDistance(cd.getState(), cd.getDistance()));
     }
 
     public void addStateBtnClick(MouseEvent mouseEvent) {
         tableView.setPrefHeight(tableView.getPrefHeight() + CELL_HEIGHT);
         tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
-        data.add(new CountryDistances("", ""));
+        data.add(new CountryDistance("", ""));
     }
 
     public void removeStateBtnClick(MouseEvent mouseEvent) {
@@ -105,6 +118,7 @@ public class StateDistancesController implements Initializable {
     }
 
     public void confirmBtnClick(MouseEvent mouseEvent) {
+        saveData();
         main.inputsEntryStage.show();
         main.stateDistancesStage.hide();
     }

@@ -94,7 +94,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="95.0" styleClass="dark-blue" stylesheets="@../../css/style.css" text="Uložiť">
+            <Button mnemonicParsing="false" onMouseClicked="#saveBtnClick"  prefHeight="23.0" prefWidth="95.0" styleClass="dark-blue" stylesheets="@../../css/style.css" text="Uložiť">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
