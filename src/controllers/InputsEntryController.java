@@ -1,6 +1,8 @@
 package controllers;
 
+import data.AllSuppliers;
 import data.OneStopRow;
+import data.Supplier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +25,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -311,6 +315,31 @@ public class InputsEntryController implements Initializable {
         }
         return FXCollections.observableArrayList(items);
     }
+
+    public String openingHoursIntersection(String cofor) {
+        data.Supplier supplier = main.suppliers.getSupplier(cofor);
+        List<String> days = new ArrayList<>(Arrays.asList(supplier.getMonday(), supplier.getTuesday(),
+                supplier.getWednesday(), supplier.getThursday(), supplier.getFriday(), supplier.getSaturday(),
+                supplier.getSunday()));
+
+        LocalTime open = LocalTime.parse("00:00");
+        LocalTime close = LocalTime.parse("23:59");
+        LocalTime o;
+        LocalTime c;
+
+        for (String day : days){
+            o = LocalTime.parse(day.split("-")[0]);
+            c = LocalTime.parse(day.split("-")[1]);
+            if (o.isAfter(open)){
+                open = o;
+            }
+            if (c.isBefore(close)){
+                close = c;
+            }
+        }
+    return open +"-"+close;
+    }
+
 
     static class MyStringConverter extends StringConverter<Integer> {
         @Override
