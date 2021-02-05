@@ -36,13 +36,13 @@
       <TextField layoutX="763.0" layoutY="123.0" prefHeight="25.0" prefWidth="83.0" AnchorPane.leftAnchor="750.0" />
       <Label layoutX="524.0" layoutY="166.0" text="Určiť podľa:" AnchorPane.leftAnchor="517.0" />
       <VBox layoutX="588.0" layoutY="161.0" prefHeight="56.0" prefWidth="100.0" AnchorPane.leftAnchor="588.0">
-         <RadioButton mnemonicParsing="false" text="Start">
+         <RadioButton fx:id="rbStart" mnemonicParsing="false" selected="true" text="Start">
             <toggleGroup>
                <ToggleGroup fx:id="group1" />
             </toggleGroup>
          </RadioButton>
-         <RadioButton mnemonicParsing="false" text="Dodávateľ" toggleGroup="$group1" />
-         <RadioButton mnemonicParsing="false" text="Stop" toggleGroup="$group1" />
+         <RadioButton fx:id="rbSupplier" mnemonicParsing="false" text="Dodávateľ" toggleGroup="$group1" />
+         <RadioButton fx:id="rbStop" mnemonicParsing="false" text="Stop" toggleGroup="$group1" />
       </VBox>
       <ChoiceBox fx:id="determinedBySupplier" layoutX="670.0" layoutY="172.0" onMouseClicked="#setDeterminedBySupplier" prefHeight="25.0" prefWidth="99.0" />
       <Button layoutX="883.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#addSupplierDataBtnClick" prefHeight="52.0" prefWidth="97.0" text="Pridať/Upraviť dodávateľa" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="11.0" />
@@ -94,7 +94,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#saveBtnClick"  prefHeight="23.0" prefWidth="95.0" styleClass="dark-blue" stylesheets="@../../css/style.css" text="Uložiť">
+            <Button mnemonicParsing="false" onMouseClicked="#saveBtnClick" prefHeight="23.0" prefWidth="95.0" styleClass="dark-blue" stylesheets="@../../css/style.css" text="Uložiť">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>

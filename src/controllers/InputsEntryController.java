@@ -80,6 +80,12 @@ public class InputsEntryController implements Initializable {
     private ChoiceBox determinedBySupplier;
     @FXML
     private ChoiceBox rowToAddOrDelete;
+    @FXML
+    private RadioButton rbStart;
+    @FXML
+    private RadioButton rbSupplier;
+    @FXML
+    private RadioButton rbStop;
 
     public InputsEntryController(Main main) throws IOException {
         this.main = main;
@@ -123,6 +129,18 @@ public class InputsEntryController implements Initializable {
         beginOfST.setCellValueFactory(new PropertyValueFactory<>("beginOfST"));
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
         freqCofor.setCellValueFactory(new PropertyValueFactory<>("freqCofor"));
+
+        cofor.setSortable(false);
+        name.setSortable(false);
+        distance.setSortable(false);
+        speed.setSortable(false);
+        loadingTime.setSortable(false);
+        stopType.setSortable(false);
+        loading.setSortable(false);
+        ramp.setSortable(false);
+        beginOfST.setSortable(false);
+        time.setSortable(false);
+        freqCofor.setSortable(false);
 
         editableCols();
     }
@@ -319,16 +337,16 @@ public class InputsEntryController implements Initializable {
 
     public void setDeterminedBySupplier(MouseEvent mouseEvent) {
         List<String> items = new ArrayList<>();
-        determinedBySupplier.setItems(listAddedSuppliersIn(items));
+        determinedBySupplier.setItems(listAddedSuppliers(items));
     }
 
     public void setRowToAddOrDelete(MouseEvent mouseEvent) {
         List<String> items = new ArrayList<>();
         items.add("-");
-        rowToAddOrDelete.setItems(listAddedSuppliersIn(items));
+        rowToAddOrDelete.setItems(listAddedSuppliers(items));
     }
 
-    public ObservableList listAddedSuppliersIn(List items) {
+    public ObservableList listAddedSuppliers(List items) {
         TableColumn<OneStopRow, String> column = cofor ;
         for (OneStopRow item : tableView.getItems()) {
             items.add(column.getCellObservableValue(item).getValue());
@@ -358,6 +376,22 @@ public class InputsEntryController implements Initializable {
             }
         }
     return open +"-"+close;
+    }
+
+    public String determinedBy() {
+        if(rbStart.isSelected()){
+            return "Start";
+        }
+        if(rbStop.isSelected()){
+            return "Stop";
+        }
+        if(rbSupplier.isSelected()) {
+            Object value = determinedBySupplier.getValue();
+            if (value != null) {
+                return value.toString();
+            }
+        }
+        return ""; //bol zakrtnuty dodavatel ale nebol ziaden vybraty
     }
 
     static class MyStringConverter extends StringConverter<Integer> {
