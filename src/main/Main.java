@@ -18,6 +18,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 
 import java.io.FileInputStream;
+import java.util.Optional;
 
 public class Main extends Application {
 
@@ -60,28 +61,59 @@ public class Main extends Application {
         });
     }
 
+    public boolean reallyClose()
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getButtonTypes().remove(ButtonType.OK);
+        alert.getButtonTypes().add(ButtonType.CANCEL);
+        alert.getButtonTypes().add(ButtonType.CLOSE);
+        alert.setTitle("Close this trip?");
+        alert.setContentText(String.format("Are you sure you want to leave this page, and return " +
+                        "back to the introductory main page? All unsaved changes will be lost."));
+        alert.initOwner(inputsEntryStage.getOwner());
+        Optional<ButtonType> res = alert.showAndWait();
+
+        if(res.isPresent()) {
+            if(res.get().equals(ButtonType.CLOSE))
+                return true;
+        }
+        return false;
+    }
+
+    public void closeWindowEvent(WindowEvent event)
+    {
+        if (reallyClose()) introStage.show();
+        else if (event != null) event.consume();
+    }
+
     public void createStages() {
         inputsEntryStage = new Stage();
         inputsEntryStage.setTitle("GEFCO Grafikon");
 
+        EventHandler<WindowEvent> reopenEntryStage = new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                inputsEntryStage.show();
+            }
+        };
+
         stateDistancesStage = new Stage();
         stateDistancesStage.setTitle("Určenie prejdenej vzdialenosti pre daný štát");
-        stateDistancesStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent we) { }
-        });
+        stateDistancesStage.setOnCloseRequest(reopenEntryStage);
 
         technicalDataStage = new Stage();
         technicalDataStage.setTitle("Určenie technických údajov");
+        technicalDataStage.setOnCloseRequest(reopenEntryStage);
 
         supplierDataStage = new Stage();
         supplierDataStage.setTitle("Pridanie dodávateľa");
+        supplierDataStage.setOnCloseRequest(reopenEntryStage);
 
         selectCoforStage = new Stage();
         selectCoforStage.setTitle("Vyberanie dodávateľa");
 
         previewStage = new Stage();
         previewStage.setTitle("Ukážka");
+        previewStage.setOnCloseRequest(reopenEntryStage);
     }
 
     public Main()

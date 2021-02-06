@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.WindowEvent;
 import javafx.util.StringConverter;
 import main.Main;
 
@@ -47,7 +48,7 @@ public class InputsEntryController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private ScrollPane scrollPane;
+    ScrollPane scrollPane;
     @FXML
     private Label introLabel;
     @FXML
@@ -99,6 +100,9 @@ public class InputsEntryController implements Initializable {
 
         main.inputsEntryStage.widthProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefWidth((Double) newVal - 30));
         main.inputsEntryStage.heightProperty().addListener((obs, oldVal, newVal) -> anchorPane.setPrefHeight((Double) newVal));
+
+        main.inputsEntryStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,
+                main::closeWindowEvent);
     }
 
     public void setIntroLabel(String introLabel) {
@@ -272,7 +276,7 @@ public class InputsEntryController implements Initializable {
     }
 
     public void goBackToIntroBtnClick(MouseEvent mouseEvent) {
-        main.introStage.show();
+        main.closeWindowEvent(null);
         main.inputsEntryStage.close();
     }
 
@@ -289,6 +293,7 @@ public class InputsEntryController implements Initializable {
         if (previewController == null) {
             previewController = new PreviewController(main);
         }
+        main.inputsEntryStage.hide();
         main.previewStage.show();
     }
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.WindowEvent;
 import main.Main;
 
 import java.io.*;
@@ -64,6 +66,7 @@ public class SupplierDataController implements Initializable{
         loader.setController(this);
 
         main.supplierDataStage.setScene(new Scene(loader.load()));
+
     }
 
     @Override
