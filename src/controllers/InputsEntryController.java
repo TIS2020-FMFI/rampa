@@ -1,7 +1,7 @@
 package controllers;
 
+import data.HeaderInputData;
 import data.OneStopRow;
-import data.SavedDataWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,6 +52,16 @@ public class InputsEntryController implements Initializable {
     @FXML
     private Label introLabel;
     @FXML
+    private TextField startTF;
+    @FXML
+    private TextField startPlaceTF;
+    @FXML
+    private TextField timeTF;
+    @FXML
+    private TextField codeRTTF;
+    @FXML
+    private TextField codeSTTF;
+    @FXML
     private TableView<OneStopRow> tableView;
     @FXML
     private TableColumn<OneStopRow, String> cofor;
@@ -78,9 +88,9 @@ public class InputsEntryController implements Initializable {
     @FXML
     private VBox tableVbox; // box v ktorom je tabulka a buttony pod nou
     @FXML
-    private ChoiceBox determinedBySupplier;
+    private ChoiceBox<String> determinedBySupplier;
     @FXML
-    private ChoiceBox rowToAddOrDelete;
+    private ChoiceBox<String> rowToAddOrDelete;
     @FXML
     private RadioButton rbStart;
     @FXML
@@ -111,14 +121,9 @@ public class InputsEntryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initTable();
-        loadData();
-
-        main.makeFasterScroll(scrollPane, anchorPane, SCROLL_SPEED);
-    }
-
-    private void initTable() {
         initCols();
+        tableView.setFixedCellSize(30.0);
+        main.makeFasterScroll(scrollPane, anchorPane, SCROLL_SPEED);
     }
 
     private void initCols() {
@@ -188,13 +193,6 @@ public class InputsEntryController implements Initializable {
         freqCofor.setOnEditCommit( e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setFreqCofor(e.getNewValue()));
     }
 
-    public void loadData() {
-        tableView.setFixedCellSize(30.0);
-        data.add(new OneStopRow("", "",0,0, 0,
-                "","","", new CheckBox(),"",0));
-        tableView.setItems(data);
-    }
-
     public void addRowInTable(MouseEvent mouseEvent) {
         Object value = rowToAddOrDelete.getValue();
         if(value != null){
@@ -245,17 +243,21 @@ public class InputsEntryController implements Initializable {
         return -1;
     }
 
+    private void recalculateTableHeights()
+    {
+        tableView.setPrefHeight(data.size() * CELL_HEIGHT + 67.0);
+        tableVbox.setPrefHeight(data.size() * CELL_HEIGHT + 303.0);
+    }
+
     public void addRow(int index) {
         data.add(index+1, new OneStopRow("", "",0,0, 0,
                 "","","", new CheckBox(),"",0));
-        tableView.setPrefHeight(tableView.getPrefHeight() + CELL_HEIGHT);
-        tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
+        recalculateTableHeights();
     }
 
     public void deleteRow(int index) {
         data.remove(index);
-        tableView.setPrefHeight(tableView.getPrefHeight() - CELL_HEIGHT);
-        tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
+        recalculateTableHeights();
     }
 
     public void addTripLengthBtnClick(MouseEvent event) throws IOException {
@@ -271,6 +273,7 @@ public class InputsEntryController implements Initializable {
         if (technicalDataController == null) {
             technicalDataController = new TechnicalDataController(main);
         }
+        else technicalDataController.loadData();
         main.technicalDataStage.show();
         main.inputsEntryStage.hide();
     }
@@ -290,6 +293,7 @@ public class InputsEntryController implements Initializable {
     }
 
     public void showPreviewBtnClick(MouseEvent mouseEvent) throws IOException {
+        storeDataToInternalRepresentation();
         if (previewController == null) {
             previewController = new PreviewController(main);
         }
@@ -298,7 +302,7 @@ public class InputsEntryController implements Initializable {
     }
 
     public void saveBtnClick(MouseEvent mouseEvent) {
-        main.tripData.grafikonName = this.introLabel.getText();
+        storeDataToInternalRepresentation();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Trip File");
         fileChooser.getExtensionFilters().addAll(
@@ -316,6 +320,7 @@ public class InputsEntryController implements Initializable {
     }
 
     public void exportExcelBtnClick(MouseEvent mouseEvent) throws IOException {
+        storeDataToInternalRepresentation();
         Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
         Sheet sheet = workbook.createSheet("Meno Harku");
         technicalDataController.writeTechnicalData(workbook, sheet,1, 1);
@@ -410,6 +415,65 @@ public class InputsEntryController implements Initializable {
             return Integer.parseInt(s);
         }
     }
+
+    void storeHeaderInputData()
+    {
+        // TODO: validate
+        String detSup;
+        String detBy = determinedBy();
+        if (detBy.equals("Start") || detBy.equals("Stop")) detSup = null;
+        else detSup = detBy;
+
+        main.tripData.headerInputData = new HeaderInputData(
+                                            startTF.getText(), startPlaceTF.getText(), timeTF.getText(),
+                                            Integer.parseInt(codeRTTF.getText()),
+                                            Integer.parseInt(codeSTTF.getText()), detBy, detSup);
+    }
+
+    void storeDataToInternalRepresentation()
+    {
+        List<OneStopRow> rows = new ArrayList<OneStopRow>(tableView.getItems());
+        main.tripData.oneStopRowList = rows;
+        main.tripData.grafikonName = this.introLabel.getText();
+        storeHeaderInputData();
+    }
+
+    void loadHeaderInputData()
+    {
+        startTF.setText(main.tripData.headerInputData.getStart());
+        startPlaceTF.setText(main.tripData.headerInputData.getPlaceOfStart());
+        timeTF.setText(main.tripData.headerInputData.getTime());
+        codeRTTF.setText(Integer.toString(main.tripData.headerInputData.getCodeRT()));
+        codeSTTF.setText(Integer.toString(main.tripData.headerInputData.getCodeST()));
+
+        if (main.tripData.headerInputData.getDeterminedBy().equals("Start"))
+            rbStart.setSelected(true);
+        else if (main.tripData.headerInputData.getDeterminedBy().equals("Stop"))
+            rbStop.setSelected(true);
+        else {
+            rbSupplier.setSelected(true);
+            determinedBySupplier.setValue(main.tripData.headerInputData.getDeterminingSupplier());
+        }
+    }
+
+    private void createMissingControlsInInputData()
+    {
+        for (OneStopRow r: main.tripData.oneStopRowList)
+        {
+            if (r.getBeginOfST() == null)
+                r.setBeginOfST(new CheckBox());
+        }
+    }
+
+    void loadDataFromInternalRepresentation()
+    {
+        loadHeaderInputData();
+        createMissingControlsInInputData();
+        data = FXCollections.observableArrayList(main.tripData.oneStopRowList);
+        tableView.setItems(data);
+        if (main.tripData.oneStopRowList.size() == 0)
+            addRow(-1);
+        recalculateTableHeights();
+        introLabel.setText(main.tripData.grafikonName);
+    }
 }
-
-

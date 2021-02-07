@@ -24,10 +24,8 @@ public class SavedDataWrapper implements Serializable {
         headerInputData = new HeaderInputData("town", "place",
                 "08:00", 123, 0, "stop", null);
         oneStopRowList = new ArrayList<>();
-        technicalData = new TechnicalData(unspecifiedStr, unspecifiedStr, unspecifiedStr, unspecifiedStr,
-                unspecifiedStr, unspecifiedStr, unspecifiedStr, unspecifiedStr,
-                unspecifiedStr, unspecifiedStr, unspecifiedStr, unspecifiedStr, unspecifiedStr, 0,
-                unspecifiedStr, 0);
+        technicalData = new TechnicalData(unspecifiedStr, unspecifiedStr, unspecifiedStr,
+                unspecifiedStr, unspecifiedStr, unspecifiedStr,0, 0);
         countryDistancesList = new ArrayList<>();
     }
 

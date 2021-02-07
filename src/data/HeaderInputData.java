@@ -4,21 +4,21 @@ import java.io.Serializable;
 
 public class HeaderInputData implements Serializable {
     private String start;
-    private String miestoStartu;
-    private String cas;
-    private Integer kodRT;
-    private Integer kodST;
-    private String urcitPodla; // ulozi tam bud string start, dodavatel alebo stop
-    private String urcitPodlaDodavatel; // ak urcitPodla je dodavatel, tak tu bude mat ulozeneho dodavatela, inak to bude null
+    private String placeOfStart;
+    private String time;
+    private Integer codeRT;
+    private Integer codeST;
+    private String determinedBy; // ulozi tam bud string start, dodavatel alebo stop
+    private String determiningSupplier; // ak urcitPodla je dodavatel, tak tu bude mat ulozeneho dodavatela, inak to bude null
 
-    public HeaderInputData(String start, String miestoStartu, String cas, Integer kodRT, Integer kodST, String urcitPodla, String urcitPodlaDodavatel) {
+    public HeaderInputData(String start, String placeOfStart, String time, Integer codeRT, Integer codeST, String determinedBy, String determiningSupplier) {
         this.start = start;
-        this.miestoStartu = miestoStartu;
-        this.cas = cas;
-        this.kodRT = kodRT;
-        this.kodST = kodST;
-        this.urcitPodla = urcitPodla;
-        this.urcitPodlaDodavatel = urcitPodlaDodavatel;
+        this.placeOfStart = placeOfStart;
+        this.time = time;
+        this.codeRT = codeRT;
+        this.codeST = codeST;
+        this.determinedBy = determinedBy;
+        this.determiningSupplier = determiningSupplier;
     }
 
 
@@ -31,52 +31,52 @@ public class HeaderInputData implements Serializable {
         this.start = start;
     }
 
-    public String getMiestoStartu() {
-        return miestoStartu;
+    public String getPlaceOfStart() {
+        return placeOfStart;
     }
 
-    public void setMiestoStartu(String miestoStartu) {
-        this.miestoStartu = miestoStartu;
+    public void setPlaceOfStart(String placeOfStart) {
+        this.placeOfStart = placeOfStart;
     }
 
-    public String getCas() {
-        return cas;
+    public String getTime() {
+        return time;
     }
 
-    public void setCas(String cas) {
-        this.cas = cas;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public Integer getKodRT() {
-        return kodRT;
+    public Integer getCodeRT() {
+        return codeRT;
     }
 
-    public void setKodRT(Integer kodRT) {
-        this.kodRT = kodRT;
+    public void setCodeRT(Integer codeRT) {
+        this.codeRT = codeRT;
     }
 
-    public Integer getKodST() {
-        return kodST;
+    public Integer getCodeST() {
+        return codeST;
     }
 
-    public void setKodST(Integer kodST) {
-        this.kodST = kodST;
+    public void setCodeST(Integer codeST) {
+        this.codeST = codeST;
     }
 
-    public String getUrcitPodla() {
-        return urcitPodla;
+    public String getDeterminedBy() {
+        return determinedBy;
     }
 
-    public void setUrcitPodla(String urcitPodla) {
-        this.urcitPodla = urcitPodla;
+    public void setDeterminedBy(String determinedBy) {
+        this.determinedBy = determinedBy;
     }
 
-    public String getUrcitPodlaDodavatel() {
-        return urcitPodlaDodavatel;
+    public String getDeterminingSupplier() {
+        return determiningSupplier;
     }
 
-    public void setUrcitPodlaDodavatel(String urcitPodlaDodavatel) {
-        this.urcitPodlaDodavatel = urcitPodlaDodavatel;
+    public void setDeterminingSupplier(String determiningSupplier) {
+        this.determiningSupplier = determiningSupplier;
     }
 
 }

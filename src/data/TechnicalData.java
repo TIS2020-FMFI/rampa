@@ -3,170 +3,89 @@ package data;
 import java.io.Serializable;
 
 public class TechnicalData implements Serializable {
-    private String appDateLb;
-    private String appDateInput;
-    private String flowLb;
-    private String flowInput;
-    private String heightGoodsLb;
-    private String heightGoodsInput;
-    private String heightTruckLb;
-    private String heightTruckInput;
-    private String length1Lb;
-    private String length1Input;
-    private String length2Lb;
-    private String length2Input;
-    private String exportLb;
-    private Integer exportInput;
-    private String importLb;
-    private Integer importInput;
+    private String appDate;
+    private String flow;
+    private String heightGoods;
+    private String heightTruck;
+    private String length1;
+    private String length2;
+    private Integer export;
+    private Integer importValue;
 
-    public TechnicalData(String appDateLb, String appDateInput, String flowLb, String flowInput, String heightGoodsLb,
-                         String heightGoodsInput, String heightTruckLb, String heightTruckInput, String length1Lb,
-                         String length1Input, String length2Lb, String length2Input, String exportLb, Integer exportInput,
-                         String importLb, Integer importInput) {
-        this.appDateLb = appDateLb;
-        this.appDateInput = appDateInput;
-        this.flowLb = flowLb;
-        this.flowInput = flowInput;
-        this.heightGoodsLb = heightGoodsLb;
-        this.heightGoodsInput = heightGoodsInput;
-        this.heightTruckLb = heightTruckLb;
-        this.heightTruckInput = heightTruckInput;
-        this.length1Lb = length1Lb;
-        this.length1Input = length1Input;
-        this.length2Lb = length2Lb;
-        this.length2Input = length2Input;
-        this.exportLb = exportLb;
-        this.exportInput = exportInput;
-        this.importLb = importLb;
-        this.importInput = importInput;
+    public TechnicalData(String appDate, String flow, String heightGoods,
+                         String heightTruck, String length1, String length2,
+                         Integer export, Integer importValue) {
+        this.appDate = appDate;
+        this.flow = flow;
+        this.heightGoods = heightGoods;
+        this.heightTruck = heightTruck;
+        this.length1 = length1;
+        this.length2 = length2;
+        this.export = export;
+        this.importValue = importValue;
     }
 
-    public String getAppDateLb() {
-        return appDateLb;
+    public String getAppDate() {
+        return appDate;
     }
 
-    public void setAppDateLb(String appDateLb) {
-        this.appDateLb = appDateLb;
+    public void setAppDate(String appDate) {
+        this.appDate = appDate;
     }
 
-    public String getAppDateInput() {
-        return appDateInput;
+    public String getFlow() {
+        return flow;
     }
 
-    public void setAppDateInput(String appDateInput) {
-        this.appDateInput = appDateInput;
+    public void setFlow(String flow) {
+        this.flow = flow;
     }
 
-    public String getFlowLb() {
-        return flowLb;
+    public String getHeightGoods() {
+        return heightGoods;
     }
 
-    public void setFlowLb(String flowLb) {
-        this.flowLb = flowLb;
+    public void setHeightGoods(String heightGoods) {
+        this.heightGoods = heightGoods;
     }
 
-    public String getFlowInput() {
-        return flowInput;
+    public String getHeightTruck() {
+        return heightTruck;
     }
 
-    public void setFlowInput(String flowInput) {
-        this.flowInput = flowInput;
+    public void setHeightTruck(String heightTruck) {
+        this.heightTruck = heightTruck;
     }
 
-    public String getHeightGoodsLb() {
-        return heightGoodsLb;
+    public String getLength1() {
+        return length1;
     }
 
-    public void setHeightGoodsLb(String heightGoodsLb) {
-        this.heightGoodsLb = heightGoodsLb;
+    public void setLength1(String length1) {
+        this.length1 = length1;
     }
 
-    public String getHeightGoodsInput() {
-        return heightGoodsInput;
+    public String getLength2() {
+        return length2;
     }
 
-    public void setHeightGoodsInput(String heightGoodsInput) {
-        this.heightGoodsInput = heightGoodsInput;
+    public void setLength2(String length2) {
+        this.length2 = length2;
     }
 
-    public String getHeightTruckLb() {
-        return heightTruckLb;
+    public Integer getExport() {
+        return export;
     }
 
-    public void setHeightTruckLb(String heightTruckLb) {
-        this.heightTruckLb = heightTruckLb;
+    public void setExport(Integer export) {
+        this.export = export;
     }
 
-    public String getHeightTruckInput() {
-        return heightTruckInput;
+    public Integer getImportValue() {
+        return importValue;
     }
 
-    public void setHeightTruckInput(String heightTruckInput) {
-        this.heightTruckInput = heightTruckInput;
-    }
-
-    public String getLength1Lb() {
-        return length1Lb;
-    }
-
-    public void setLength1Lb(String length1Lb) {
-        this.length1Lb = length1Lb;
-    }
-
-    public String getLength1Input() {
-        return length1Input;
-    }
-
-    public void setLength1Input(String length1Input) {
-        this.length1Input = length1Input;
-    }
-
-    public String getLength2Lb() {
-        return length2Lb;
-    }
-
-    public void setLength2Lb(String length2Lb) {
-        this.length2Lb = length2Lb;
-    }
-
-    public String getLength2Input() {
-        return length2Input;
-    }
-
-    public void setLength2Input(String length2Input) {
-        this.length2Input = length2Input;
-    }
-
-    public String getExportLb() {
-        return exportLb;
-    }
-
-    public void setExportLb(String exportLb) {
-        this.exportLb = exportLb;
-    }
-
-    public Integer getExportInput() {
-        return exportInput;
-    }
-
-    public void setExportInput(Integer exportInput) {
-        this.exportInput = exportInput;
-    }
-
-    public String getImportLb() {
-        return importLb;
-    }
-
-    public void setImportLb(String importLb) {
-        this.importLb = importLb;
-    }
-
-    public Integer getImportInput() {
-        return importInput;
-    }
-
-    public void setImportInput(Integer importInput) {
-        this.importInput = importInput;
+    public void setImportValue(Integer importValue) {
+        this.importValue = importValue;
     }
 }

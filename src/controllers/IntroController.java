@@ -44,6 +44,7 @@ public class IntroController implements Initializable {
     public void switchToInputsEntry() throws IOException {
         if (inputsEntryController == null)
             inputsEntryController = new InputsEntryController(main);
+        inputsEntryController.loadDataFromInternalRepresentation();
         main.inputsEntryStage.show();
         main.introStage.hide();
     }

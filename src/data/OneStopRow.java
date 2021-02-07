@@ -109,6 +109,7 @@ public class OneStopRow implements Serializable {
 
     public void setBeginOfST(CheckBox beginOfST) {
         this.beginOfST = beginOfST;
+        this.beginOfSTChecked = beginOfST.isSelected();
     }
 
     public String getTime() {

@@ -96,27 +96,32 @@ public class StateDistancesController implements Initializable {
         if (data.size() == 0)
             data.add(new CountryDistance("", ""));
         tableView.setItems(data);
+        recalculateHeight();
     }
 
     private void saveData()
     {
+        //TODO: validate
         List<CountryDistance> output = main.tripData.countryDistancesList;
         output.clear();
         for (CountryDistance cd : data)
             output.add(new CountryDistance(cd.getState(), cd.getDistance()));
     }
 
+    private void recalculateHeight() {
+        tableView.setPrefHeight(data.size() * CELL_HEIGHT + 65.0);
+        tableVbox.setPrefHeight(data.size() * CELL_HEIGHT + 179.0);
+    }
+
     public void addStateBtnClick(MouseEvent mouseEvent) {
-        tableView.setPrefHeight(tableView.getPrefHeight() + CELL_HEIGHT);
-        tableVbox.setPrefHeight(tableVbox.getPrefHeight() + CELL_HEIGHT);
+        recalculateHeight();
         data.add(new CountryDistance("", ""));
     }
 
     public void removeStateBtnClick(MouseEvent mouseEvent) {
         if (tableView.getPrefHeight() > CELL_HEIGHT*2 + 6) {
-            tableView.setPrefHeight(tableView.getPrefHeight() - CELL_HEIGHT);
-            tableVbox.setPrefHeight(tableVbox.getPrefHeight() - CELL_HEIGHT);
             data.remove(data.size() - 1);
+            recalculateHeight();
         }
     }
 

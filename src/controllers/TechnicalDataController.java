@@ -1,5 +1,6 @@
 package controllers;
 
+import data.CountryDistance;
 import excel.ExcelUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,6 +83,7 @@ public class TechnicalDataController implements Initializable {
     }
 
     public void confirmBtnClick(MouseEvent mouseEvent) {
+        saveData();
         main.inputsEntryStage.show();
         main.technicalDataStage.hide();
     }
@@ -94,6 +96,31 @@ public class TechnicalDataController implements Initializable {
         inputs = new ArrayList<>(
                 Arrays.asList(appDateInput, flowInput, exportInput, heightGoodsInput, importInput, heightTruckInput,
                               length1Input, length2Input));
+        loadData();
+    }
+
+    public void loadData() {
+        appDateInput.setText(main.tripData.technicalData.getAppDate());
+        flowInput.setText(main.tripData.technicalData.getFlow());
+        heightGoodsInput.setText(main.tripData.technicalData.getHeightGoods());
+        heightTruckInput.setText(main.tripData.technicalData.getHeightTruck());
+        length1Input.setText(main.tripData.technicalData.getLength1());
+        length2Input.setText(main.tripData.technicalData.getLength2());
+        exportInput.setText(Integer.toString(main.tripData.technicalData.getExport()));
+        importInput.setText(Integer.toString(main.tripData.technicalData.getImportValue()));
+    }
+
+    private void saveData()
+    {
+        //TODO: validate
+        main.tripData.technicalData.setAppDate(appDateInput.getText());
+        main.tripData.technicalData.setFlow(flowInput.getText());
+        main.tripData.technicalData.setHeightGoods(heightGoodsInput.getText());
+        main.tripData.technicalData.setHeightTruck(heightTruckInput.getText());
+        main.tripData.technicalData.setLength1(length1Input.getText());
+        main.tripData.technicalData.setLength2(length2Input.getText());
+        main.tripData.technicalData.setExport(Integer.parseInt(exportInput.getText()));
+        main.tripData.technicalData.setImportValue(Integer.parseInt(importInput.getText()));
     }
 
     // vyexportuj tabulku technickych udajov
